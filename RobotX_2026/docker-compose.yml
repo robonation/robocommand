@@ -1,0 +1,19 @@
+services:
+  broker:
+    image: eclipse-mosquitto:2
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto:/mosquitto/config:z
+
+  rc-test:
+    build:
+      context: .
+      dockerfile: rc_test/Dockerfile
+    depends_on:
+      - broker
+    environment:
+      BROKER_HOST: broker
+      BROKER_PORT: "1883"
+    volumes:
+      - ./logs:/app/logs:z

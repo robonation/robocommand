@@ -1,53 +1,15 @@
 # RoboCommand
 
-This is the course management software for the 2026 RoboBoat competition.
+Course management software for autonomous vehicle competitions. Each competition has its own folder with its own protocol, message schemas, and tooling.
 
-## Contents
+## Competitions
 
-* The Protocol Buffer message definition file, **report.proto**, can be found in the `./proto` folder.
+* [`RoboBoat_2026/`](RoboBoat_2026/) — Protobuf schemas and example server/client for the 2026 RoboBoat competition.
 
-* The Python and C++ compiled outputs of report.proto can be found in the `./msgs` folder.
+* [`RobotX_2026/`](RobotX_2026/) — Protobuf schemas and test tooling for RobotX 2026 MQTT communication between a team's Operator Control Station (OCS) and RoboCommand.
 
-* A simple python server for testing and debugging.
+See each folder's README for setup and usage instructions.
 
-  * This test server is using the same TCP_library that the course server uses.
+## License
 
-* A simple python client with setup instructions below.
-
-* A simple C++ client example. 
-
-## Dependencies
-
-RoboCommand uses v6.32.1 of the protobuf runtime library and v32.1 of the protoc compiler.
-
-## Running the python test server and client:
-
-Setup up a python virtual environment:
-
-    python -m venv venv
-
-Activate the new environment:
-
-    source venv/bin/activate
-
-Install dependencies:
-
-    pip install -r requirements.txt
-
-Start the server:
-
-    python -m examples.test_server
-
-In a new terminal, activate the environment:
-
-    source venv/bin/activate
-
-Run the client to send a message:
-
-    python -m examples.test_client
-
-A message should have printed in the server's console.
-
-You can update the message contents in the client script.
-
-Run the server and test your own client software to ensure it behaves as expected.
+See [LICENSE](LICENSE).
