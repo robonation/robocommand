@@ -11,13 +11,15 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class RxCourse(_message.Message):
-    __slots__ = ("course_id", "pinger_freq_hz", "corners", "sent_at")
+    __slots__ = ("course_id", "pinger_freq_hz", "corners", "sent_at", "uav_transit_area")
     COURSE_ID_FIELD_NUMBER: _ClassVar[int]
     PINGER_FREQ_HZ_FIELD_NUMBER: _ClassVar[int]
     CORNERS_FIELD_NUMBER: _ClassVar[int]
     SENT_AT_FIELD_NUMBER: _ClassVar[int]
+    UAV_TRANSIT_AREA_FIELD_NUMBER: _ClassVar[int]
     course_id: str
     pinger_freq_hz: int
     corners: _containers.RepeatedCompositeFieldContainer[_common_pb2.LatLng]
     sent_at: _timestamp_pb2.Timestamp
-    def __init__(self, course_id: _Optional[str] = ..., pinger_freq_hz: _Optional[int] = ..., corners: _Optional[_Iterable[_Union[_common_pb2.LatLng, _Mapping]]] = ..., sent_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ...) -> None: ...
+    uav_transit_area: _containers.RepeatedCompositeFieldContainer[_common_pb2.LatLng]
+    def __init__(self, course_id: _Optional[str] = ..., pinger_freq_hz: _Optional[int] = ..., corners: _Optional[_Iterable[_Union[_common_pb2.LatLng, _Mapping]]] = ..., sent_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., uav_transit_area: _Optional[_Iterable[_Union[_common_pb2.LatLng, _Mapping]]] = ...) -> None: ...

@@ -232,6 +232,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED RxCourse final : public ::google::p
   // accessors -------------------------------------------------------
   enum : int {
     kCornersFieldNumber = 3,
+    kUavTransitAreaFieldNumber = 5,
     kCourseIdFieldNumber = 1,
     kSentAtFieldNumber = 4,
     kPingerFreqHzFieldNumber = 2,
@@ -255,6 +256,27 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED RxCourse final : public ::google::p
   private:
   const ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>& _internal_corners() const;
   ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>* PROTOBUF_NONNULL _internal_mutable_corners();
+
+  public:
+  // repeated .robocommand.common.v1.LatLng uav_transit_area = 5;
+  [[nodiscard]] int uav_transit_area_size()
+      const;
+  private:
+  int _internal_uav_transit_area_size() const;
+
+  public:
+  void clear_uav_transit_area() ;
+  [[nodiscard]] const ::robocommand::common::v1::LatLng& uav_transit_area(int index) const;
+  [[nodiscard]] ::robocommand::common::v1::LatLng* PROTOBUF_NONNULL mutable_uav_transit_area(int index);
+  ::robocommand::common::v1::LatLng* PROTOBUF_NONNULL add_uav_transit_area();
+  [[nodiscard]] const ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>&
+  uav_transit_area() const;
+  [[nodiscard]] ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>* PROTOBUF_NONNULL
+  mutable_uav_transit_area();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>& _internal_uav_transit_area() const;
+  ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>* PROTOBUF_NONNULL _internal_mutable_uav_transit_area();
 
   public:
   // string course_id = 1;
@@ -302,8 +324,8 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED RxCourse final : public ::google::p
  private:
   class _Internal;
   using ParseTableT_ =
-      ::google::protobuf::internal::TcParseTable<2, 4,
-                          2, 48,
+      ::google::protobuf::internal::TcParseTable<3, 5,
+                          3, 48,
                           2>;
   static constexpr ParseTableT_ InternalGenerateParseTable_(
       const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL class_data);
@@ -332,6 +354,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED RxCourse final : public ::google::p
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField< ::robocommand::common::v1::LatLng > corners_;
+    ::google::protobuf::RepeatedPtrField< ::robocommand::common::v1::LatLng > uav_transit_area_;
     ::google::protobuf::internal::ArenaStringPtr course_id_;
     ::google::protobuf::Timestamp* PROTOBUF_NULLABLE sent_at_;
     ::uint32_t pinger_freq_hz_;
@@ -359,13 +382,13 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED RxCourse final : public ::google::p
 
 // string course_id = 1;
 inline bool RxCourse::has_course_id() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000002U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
   return value;
 }
 inline void RxCourse::clear_course_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.course_id_.ClearToEmpty();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
 }
 inline ::absl::string_view RxCourse::course_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -375,7 +398,7 @@ inline ::absl::string_view RxCourse::course_id() const
 template <typename Arg_>
 PROTOBUF_ALWAYS_INLINE void RxCourse::set_course_id(Arg_&& arg) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   _impl_.course_id_.Set(static_cast<Arg_&&>(arg), GetArena());
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.RxCourse.course_id)
 }
@@ -385,19 +408,19 @@ inline ::absl::string_view RxCourse::_internal_course_id() const {
 }
 inline void RxCourse::_internal_set_course_id(::absl::string_view value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   _impl_.course_id_.Set(value, GetArena());
 }
 
 // uint32 pinger_freq_hz = 2;
 inline bool RxCourse::has_pinger_freq_hz() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000010U);
   return value;
 }
 inline void RxCourse::clear_pinger_freq_hz() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.pinger_freq_hz_ = 0u;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
 }
 inline ::uint32_t RxCourse::pinger_freq_hz() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.RxCourse.pinger_freq_hz)
@@ -405,7 +428,7 @@ inline ::uint32_t RxCourse::pinger_freq_hz() const {
 }
 inline void RxCourse::set_pinger_freq_hz(::uint32_t value) {
   _internal_set_pinger_freq_hz(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.RxCourse.pinger_freq_hz)
 }
 inline ::uint32_t RxCourse::_internal_pinger_freq_hz() const {
@@ -469,7 +492,7 @@ RxCourse::_internal_mutable_corners() {
 
 // .google.protobuf.Timestamp sent_at = 4;
 inline bool RxCourse::has_sent_at() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
   PROTOBUF_ASSUME(!value || _impl_.sent_at_ != nullptr);
   return value;
 }
@@ -490,16 +513,16 @@ inline void RxCourse::unsafe_arena_set_allocated_sent_at(
   }
   _impl_.sent_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   if (value != nullptr) {
-    SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:robocommand.robotx.v1.RxCourse.sent_at)
 }
 inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE RxCourse::release_sent_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   ::google::protobuf::Timestamp* released = _impl_.sent_at_;
   _impl_.sent_at_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -519,7 +542,7 @@ inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE RxCourse::unsafe_arena_r
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:robocommand.robotx.v1.RxCourse.sent_at)
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   ::google::protobuf::Timestamp* temp = _impl_.sent_at_;
   _impl_.sent_at_ = nullptr;
   return temp;
@@ -534,7 +557,7 @@ inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL RxCourse::_internal_mutab
 }
 inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL RxCourse::mutable_sent_at()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   ::google::protobuf::Timestamp* _msg = _internal_mutable_sent_at();
   // @@protoc_insertion_point(field_mutable:robocommand.robotx.v1.RxCourse.sent_at)
   return _msg;
@@ -551,13 +574,63 @@ inline void RxCourse::set_allocated_sent_at(::google::protobuf::Timestamp* PROTO
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
   }
 
   _impl_.sent_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
   // @@protoc_insertion_point(field_set_allocated:robocommand.robotx.v1.RxCourse.sent_at)
+}
+
+// repeated .robocommand.common.v1.LatLng uav_transit_area = 5;
+inline int RxCourse::_internal_uav_transit_area_size() const {
+  return _internal_uav_transit_area().size();
+}
+inline int RxCourse::uav_transit_area_size() const {
+  return _internal_uav_transit_area_size();
+}
+inline const ::robocommand::common::v1::LatLng& RxCourse::uav_transit_area(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:robocommand.robotx.v1.RxCourse.uav_transit_area)
+  return _internal_uav_transit_area().Get(index);
+}
+inline ::robocommand::common::v1::LatLng* PROTOBUF_NONNULL RxCourse::mutable_uav_transit_area(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:robocommand.robotx.v1.RxCourse.uav_transit_area)
+  return _internal_mutable_uav_transit_area()->Mutable(index);
+}
+inline ::robocommand::common::v1::LatLng* PROTOBUF_NONNULL RxCourse::add_uav_transit_area()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::robocommand::common::v1::LatLng* _add =
+      _internal_mutable_uav_transit_area()->InternalAddWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), GetArena());
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  // @@protoc_insertion_point(field_add:robocommand.robotx.v1.RxCourse.uav_transit_area)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>& RxCourse::uav_transit_area() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:robocommand.robotx.v1.RxCourse.uav_transit_area)
+  return _internal_uav_transit_area();
+}
+inline ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>* PROTOBUF_NONNULL
+RxCourse::mutable_uav_transit_area() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  // @@protoc_insertion_point(field_mutable_list:robocommand.robotx.v1.RxCourse.uav_transit_area)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_uav_transit_area();
+}
+inline const ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>&
+RxCourse::_internal_uav_transit_area() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.uav_transit_area_;
+}
+inline ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>* PROTOBUF_NONNULL
+RxCourse::_internal_mutable_uav_transit_area() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.uav_transit_area_;
 }
 
 #ifdef __GNUC__

@@ -49,12 +49,12 @@ constexpr RxCourse::ParseTableT_ RxCourse::InternalGenerateParseTable_(const ::_
     {
       PROTOBUF_FIELD_OFFSET(RxCourse, _impl_._has_bits_),
       0, // no _extensions_
-      4, 24,  // max_field_number, fast_idx_mask
+      5, 56,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294967280,  // skipmap
+      4294967264,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      4,  // num_field_entries
-      2,  // num_aux_entries
+      5,  // num_field_entries
+      3,  // num_aux_entries
       offsetof(ParseTableT_, aux_entries),
       class_data,
       nullptr,  // post_loop_handler
@@ -63,33 +63,42 @@ constexpr RxCourse::ParseTableT_ RxCourse::InternalGenerateParseTable_(const ::_
       ::_pbi::TcParser::GetTable<::robocommand::robotx::v1::RxCourse>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      // .google.protobuf.Timestamp sent_at = 4;
-      {::_pbi::TcParser::FastMtS1,
-       {34, 2, 1,
-        PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.sent_at_)}},
+      {::_pbi::TcParser::MiniParse, {}},
       // string course_id = 1;
       {::_pbi::TcParser::FastUS1,
-       {10, 1, 0,
+       {10, 2, 0,
         PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.course_id_)}},
       // uint32 pinger_freq_hz = 2;
-      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RxCourse, _impl_.pinger_freq_hz_), 3>(),
-       {16, 3, 0,
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RxCourse, _impl_.pinger_freq_hz_), 4>(),
+       {16, 4, 0,
         PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.pinger_freq_hz_)}},
       // repeated .robocommand.common.v1.LatLng corners = 3;
       {::_pbi::TcParser::FastMtR1,
        {26, 0, 0,
         PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.corners_)}},
+      // .google.protobuf.Timestamp sent_at = 4;
+      {::_pbi::TcParser::FastMtS1,
+       {34, 3, 1,
+        PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.sent_at_)}},
+      // repeated .robocommand.common.v1.LatLng uav_transit_area = 5;
+      {::_pbi::TcParser::FastMtR1,
+       {42, 1, 2,
+        PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.uav_transit_area_)}},
+      {::_pbi::TcParser::MiniParse, {}},
+      {::_pbi::TcParser::MiniParse, {}},
     }}, {{
       65535, 65535
     }}, {{
       // string course_id = 1;
-      {PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.course_id_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+      {PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.course_id_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
       // uint32 pinger_freq_hz = 2;
-      {PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.pinger_freq_hz_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
+      {PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.pinger_freq_hz_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kUInt32)},
       // repeated .robocommand.common.v1.LatLng corners = 3;
       {PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.corners_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
       // .google.protobuf.Timestamp sent_at = 4;
-      {PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.sent_at_), _Internal::kHasBitsOffset + 2, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      {PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.sent_at_), _Internal::kHasBitsOffset + 3, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      // repeated .robocommand.common.v1.LatLng uav_transit_area = 5;
+      {PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.uav_transit_area_), _Internal::kHasBitsOffset + 1, 2, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     }},
     {{
         #ifndef PROTOBUF_MESSAGE_GLOBALS
@@ -101,6 +110,11 @@ constexpr RxCourse::ParseTableT_ RxCourse::InternalGenerateParseTable_(const ::_
         {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
         #else
         {::_pbi::FieldAuxMessageGlobals(), &::google::protobuf::Timestamp_globals_},
+        #endif
+        #ifndef PROTOBUF_MESSAGE_GLOBALS
+        {::_pbi::TcParser::GetTable<::robocommand::common::v1::LatLng>()},
+        #else
+        {::_pbi::FieldAuxMessageGlobals(), &::robocommand::common::v1::LatLng_globals_},
         #endif
     }},
     {{
@@ -119,6 +133,11 @@ inline constexpr RxCourse::Impl_::Impl_(
         corners_ { visibility, ::_pbi::InternalMetadataOffset::Build<
             ::robocommand::robotx::v1::RxCourse,
             PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.corners_)>()
+         }
+        ,
+        uav_transit_area_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::robocommand::robotx::v1::RxCourse,
+            PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.uav_transit_area_)>()
          }
         ,
         course_id_(
@@ -231,15 +250,17 @@ const ::uint32_t
         protodesc_cold) = {
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_._has_bits_),
-        7, // hasbit index offset
+        8, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.course_id_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.pinger_freq_hz_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.corners_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.sent_at_),
-        1,
-        3,
-        0,
+        PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.uav_transit_area_),
         2,
+        4,
+        0,
+        3,
+        1,
 };
 
 static const ::_pbi::MigrationSchema
@@ -254,11 +275,12 @@ const char descriptor_table_protodef_robotx_2frx_5fcourse_2eproto[] ABSL_ATTRIBU
     protodesc_cold) = {
     "\n\026robotx/rx_course.proto\022\025robocommand.ro"
     "botx.v1\032\037google/protobuf/timestamp.proto"
-    "\032\014common.proto\"\222\001\n\010RxCourse\022\021\n\tcourse_id"
+    "\032\014common.proto\"\313\001\n\010RxCourse\022\021\n\tcourse_id"
     "\030\001 \001(\t\022\026\n\016pinger_freq_hz\030\002 \001(\r\022.\n\007corner"
     "s\030\003 \003(\0132\035.robocommand.common.v1.LatLng\022+"
     "\n\007sent_at\030\004 \001(\0132\032.google.protobuf.Timest"
-    "ampb\010editionsp\351\007"
+    "amp\0227\n\020uav_transit_area\030\005 \003(\0132\035.robocomm"
+    "and.common.v1.LatLngb\010editionsp\351\007"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_robotx_2frx_5fcourse_2eproto_deps[2] = {
@@ -269,7 +291,7 @@ static ::absl::once_flag descriptor_table_robotx_2frx_5fcourse_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_robotx_2frx_5fcourse_2eproto = {
     false,
     false,
-    256,
+    313,
     descriptor_table_protodef_robotx_2frx_5fcourse_2eproto,
     "robotx/rx_course.proto",
     &descriptor_table_robotx_2frx_5fcourse_2eproto_once,
@@ -295,7 +317,12 @@ void RxCourse::clear_corners() {
 void RxCourse::clear_sent_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.sent_at_ != nullptr) _impl_.sent_at_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+}
+void RxCourse::clear_uav_transit_area() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.uav_transit_area_.Clear();
+  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
 }
 RxCourse::RxCourse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -319,6 +346,13 @@ PROTOBUF_NDEBUG_INLINE RxCourse::Impl_::Impl_(
           , from.corners_
         }
         ,
+        uav_transit_area_ {
+          visibility, ::_pbi::InternalMetadataOffset::Build<
+              ::robocommand::robotx::v1::RxCourse,
+              PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.uav_transit_area_)>()
+          , from.uav_transit_area_
+        }
+        ,
         course_id_(arena, from.course_id_) {}
 
 RxCourse::RxCourse(
@@ -336,7 +370,7 @@ RxCourse::RxCourse(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.sent_at_ = (CheckHasBit(cached_has_bits, 0x00000004U))
+  _impl_.sent_at_ = (CheckHasBit(cached_has_bits, 0x00000008U))
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.sent_at_)
                 : nullptr;
   _impl_.pinger_freq_hz_ = from._impl_.pinger_freq_hz_;
@@ -350,6 +384,11 @@ PROTOBUF_NDEBUG_INLINE RxCourse::Impl_::Impl_(
         corners_ { visibility, ::_pbi::InternalMetadataOffset::Build<
             ::robocommand::robotx::v1::RxCourse,
             PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.corners_)>()
+         }
+        ,
+        uav_transit_area_ { visibility, ::_pbi::InternalMetadataOffset::Build<
+            ::robocommand::robotx::v1::RxCourse,
+            PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RxCourse, _impl_.uav_transit_area_)>()
          }
         ,
         course_id_(arena) {}
@@ -413,14 +452,17 @@ PROTOBUF_NOINLINE void RxCourse::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       _impl_.corners_.Clear();
     }
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      _impl_.course_id_.ClearNonDefaultToEmpty();
+      _impl_.uav_transit_area_.Clear();
     }
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _impl_.course_id_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       ABSL_DCHECK(_impl_.sent_at_ != nullptr);
       _impl_.sent_at_->Clear();
     }
@@ -450,7 +492,7 @@ PROTOBUF_NOINLINE void RxCourse::Clear() {
 
   cached_has_bits = this_._impl_._has_bits_[0];
   // string course_id = 1;
-  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     const ::absl::string_view _s = this_._internal_course_id();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
         _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "robocommand.robotx.v1.RxCourse.course_id");
@@ -458,7 +500,7 @@ PROTOBUF_NOINLINE void RxCourse::Clear() {
   }
 
   // uint32 pinger_freq_hz = 2;
-  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
         2, this_._internal_pinger_freq_hz(), target);
@@ -478,10 +520,23 @@ PROTOBUF_NOINLINE void RxCourse::Clear() {
   }
 
   // .google.protobuf.Timestamp sent_at = 4;
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         4, *this_._impl_.sent_at_, this_._impl_.sent_at_->GetCachedSize(), target,
         stream);
+  }
+
+  // repeated .robocommand.common.v1.LatLng uav_transit_area = 5;
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    for (unsigned i = 0, n = static_cast<unsigned>(
+                             this_._internal_uav_transit_area_size());
+         i < n; i++) {
+      const auto& repfield = this_._internal_uav_transit_area().Get(i);
+      target =
+          ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+              5, repfield, repfield.GetCachedSize(),
+              target, stream);
+    }
   }
 
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -509,7 +564,7 @@ PROTOBUF_NOINLINE void RxCourse::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
     // repeated .robocommand.common.v1.LatLng corners = 3;
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       total_size += 1UL * this_._internal_corners_size();
@@ -517,18 +572,25 @@ PROTOBUF_NOINLINE void RxCourse::Clear() {
         total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
       }
     }
-    // string course_id = 1;
+    // repeated .robocommand.common.v1.LatLng uav_transit_area = 5;
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      total_size += 1UL * this_._internal_uav_transit_area_size();
+      for (const auto& msg : this_._internal_uav_transit_area()) {
+        total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
+      }
+    }
+    // string course_id = 1;
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                       this_._internal_course_id());
     }
     // .google.protobuf.Timestamp sent_at = 4;
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.sent_at_);
     }
     // uint32 pinger_freq_hz = 2;
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
       total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
           this_._internal_pinger_freq_hz());
     }
@@ -551,16 +613,21 @@ void RxCourse::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       _this->_internal_mutable_corners()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
           from._internal_corners());
     }
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
-      _this->_internal_set_course_id(from._internal_course_id());
+      _this->_internal_mutable_uav_transit_area()->InternalMergeFromWithArena(
+          ::google::protobuf::MessageLite::internal_visibility(), arena,
+          from._internal_uav_transit_area());
     }
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _this->_internal_set_course_id(from._internal_course_id());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       ABSL_DCHECK(from._impl_.sent_at_ != nullptr);
       if (_this->_impl_.sent_at_ == nullptr) {
         _this->_impl_.sent_at_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.sent_at_);
@@ -568,7 +635,7 @@ void RxCourse::MergeImpl(::google::protobuf::MessageLite& to_msg,
         _this->_impl_.sent_at_->MergeFrom(*from._impl_.sent_at_);
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
       _this->_impl_.pinger_freq_hz_ = from._impl_.pinger_freq_hz_;
     }
   }
@@ -592,6 +659,7 @@ void RxCourse::InternalSwap(RxCourse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) 
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.corners_.InternalSwap(&other->_impl_.corners_);
+  _impl_.uav_transit_area_.InternalSwap(&other->_impl_.uav_transit_area_);
   _impl_.course_id_.InternalSwap(&_impl_.course_id_, &other->_impl_.course_id_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(RxCourse, _impl_.pinger_freq_hz_)

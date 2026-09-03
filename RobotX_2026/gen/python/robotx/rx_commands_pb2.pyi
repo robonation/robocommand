@@ -76,13 +76,15 @@ class AllClear(_message.Message):
     def __init__(self, vehicle_type: _Optional[_Union[_rx_common_pb2.VehicleType, str]] = ...) -> None: ...
 
 class MovingObjectAlert(_message.Message):
-    __slots__ = ("position", "heading_deg", "speed_mps", "affected_vehicle_types")
+    __slots__ = ("position", "heading_deg", "speed_mps", "affected_vehicle_types", "keep_out_radius_m")
     POSITION_FIELD_NUMBER: _ClassVar[int]
     HEADING_DEG_FIELD_NUMBER: _ClassVar[int]
     SPEED_MPS_FIELD_NUMBER: _ClassVar[int]
     AFFECTED_VEHICLE_TYPES_FIELD_NUMBER: _ClassVar[int]
+    KEEP_OUT_RADIUS_M_FIELD_NUMBER: _ClassVar[int]
     position: _common_pb2.LatLng
     heading_deg: float
     speed_mps: float
     affected_vehicle_types: _containers.RepeatedScalarFieldContainer[_rx_common_pb2.VehicleType]
-    def __init__(self, position: _Optional[_Union[_common_pb2.LatLng, _Mapping]] = ..., heading_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ..., affected_vehicle_types: _Optional[_Iterable[_Union[_rx_common_pb2.VehicleType, str]]] = ...) -> None: ...
+    keep_out_radius_m: float
+    def __init__(self, position: _Optional[_Union[_common_pb2.LatLng, _Mapping]] = ..., heading_deg: _Optional[float] = ..., speed_mps: _Optional[float] = ..., affected_vehicle_types: _Optional[_Iterable[_Union[_rx_common_pb2.VehicleType, str]]] = ..., keep_out_radius_m: _Optional[float] = ...) -> None: ...

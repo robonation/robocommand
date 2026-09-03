@@ -922,6 +922,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED MovingObjectAlert final : public ::
     kPositionFieldNumber = 1,
     kHeadingDegFieldNumber = 2,
     kSpeedMpsFieldNumber = 3,
+    kKeepOutRadiusMFieldNumber = 5,
   };
   // repeated .robocommand.robotx.v1.VehicleType affected_vehicle_types = 4;
   [[nodiscard]] int affected_vehicle_types_size()
@@ -984,11 +985,23 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED MovingObjectAlert final : public ::
   void _internal_set_speed_mps(float value);
 
   public:
+  // float keep_out_radius_m = 5;
+  [[nodiscard]] bool has_keep_out_radius_m()
+      const;
+  void clear_keep_out_radius_m() ;
+  [[nodiscard]] float keep_out_radius_m() const;
+  void set_keep_out_radius_m(float value);
+
+  private:
+  float _internal_keep_out_radius_m() const;
+  void _internal_set_keep_out_radius_m(float value);
+
+  public:
   // @@protoc_insertion_point(class_scope:robocommand.robotx.v1.MovingObjectAlert)
  private:
   class _Internal;
   using ParseTableT_ =
-      ::google::protobuf::internal::TcParseTable<2, 4,
+      ::google::protobuf::internal::TcParseTable<3, 5,
                           1, 0,
                           2>;
   static constexpr ParseTableT_ InternalGenerateParseTable_(
@@ -1022,6 +1035,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED MovingObjectAlert final : public ::
     ::robocommand::common::v1::LatLng* PROTOBUF_NULLABLE position_;
     float heading_deg_;
     float speed_mps_;
+    float keep_out_radius_m_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -3229,6 +3243,34 @@ inline ::google::protobuf::RepeatedField<int>* PROTOBUF_NONNULL
 MovingObjectAlert::_internal_mutable_affected_vehicle_types() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.affected_vehicle_types_;
+}
+
+// float keep_out_radius_m = 5;
+inline bool MovingObjectAlert::has_keep_out_radius_m() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000010U);
+  return value;
+}
+inline void MovingObjectAlert::clear_keep_out_radius_m() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.keep_out_radius_m_ = 0;
+  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+}
+inline float MovingObjectAlert::keep_out_radius_m() const {
+  // @@protoc_insertion_point(field_get:robocommand.robotx.v1.MovingObjectAlert.keep_out_radius_m)
+  return _internal_keep_out_radius_m();
+}
+inline void MovingObjectAlert::set_keep_out_radius_m(float value) {
+  _internal_set_keep_out_radius_m(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  // @@protoc_insertion_point(field_set:robocommand.robotx.v1.MovingObjectAlert.keep_out_radius_m)
+}
+inline float MovingObjectAlert::_internal_keep_out_radius_m() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.keep_out_radius_m_;
+}
+inline void MovingObjectAlert::_internal_set_keep_out_radius_m(float value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.keep_out_radius_m_ = value;
 }
 
 #ifdef __GNUC__

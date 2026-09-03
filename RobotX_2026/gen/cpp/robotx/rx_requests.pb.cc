@@ -51,11 +51,11 @@ constexpr RunDeclaration::ParseTableT_ RunDeclaration::InternalGenerateParseTabl
     {
       PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_._has_bits_),
       0, // no _extensions_
-      6, 56,  // max_field_number, fast_idx_mask
+      8, 56,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294967232,  // skipmap
+      4294967040,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      6,  // num_field_entries
+      8,  // num_field_entries
       1,  // num_aux_entries
       offsetof(ParseTableT_, aux_entries),
       class_data,
@@ -65,47 +65,57 @@ constexpr RunDeclaration::ParseTableT_ RunDeclaration::InternalGenerateParseTabl
       ::_pbi::TcParser::GetTable<::robocommand::robotx::v1::RunDeclaration>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      {::_pbi::TcParser::MiniParse, {}},
+      // string uav_pilot_callsign = 8;
+      {::_pbi::TcParser::FastUS1,
+       {66, 2, 0,
+        PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.uav_pilot_callsign_)}},
       // repeated string vehicle_ids = 1;
       {::_pbi::TcParser::FastUR1,
        {10, 0, 0,
         PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.vehicle_ids_)}},
       // .robocommand.common.v1.TaskTier task1_tier = 2;
-      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RunDeclaration, _impl_.task1_tier_), 2>(),
-       {16, 2, 0,
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RunDeclaration, _impl_.task1_tier_), 3>(),
+       {16, 3, 0,
         PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task1_tier_)}},
       // .robocommand.common.v1.TaskTier task2_tier = 3;
-      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RunDeclaration, _impl_.task2_tier_), 3>(),
-       {24, 3, 0,
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RunDeclaration, _impl_.task2_tier_), 4>(),
+       {24, 4, 0,
         PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task2_tier_)}},
       // .robocommand.common.v1.TaskTier task3_tier = 4;
-      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RunDeclaration, _impl_.task3_tier_), 4>(),
-       {32, 4, 0,
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RunDeclaration, _impl_.task3_tier_), 5>(),
+       {32, 5, 0,
         PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task3_tier_)}},
       // .robocommand.common.v1.TaskTier task4_tier = 5;
-      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RunDeclaration, _impl_.task4_tier_), 5>(),
-       {40, 5, 0,
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(RunDeclaration, _impl_.task4_tier_), 6>(),
+       {40, 6, 0,
         PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task4_tier_)}},
       // repeated .robocommand.common.v1.LatLng uav_geofence = 6;
       {::_pbi::TcParser::FastMtR1,
        {50, 1, 0,
         PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.uav_geofence_)}},
-      {::_pbi::TcParser::MiniParse, {}},
+      // double uav_geofence_max_altitude_hae_m = 7;
+      {::_pbi::TcParser::FastF64S1,
+       {57, 7, 0,
+        PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.uav_geofence_max_altitude_hae_m_)}},
     }}, {{
       65535, 65535
     }}, {{
       // repeated string vehicle_ids = 1;
       {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.vehicle_ids_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
       // .robocommand.common.v1.TaskTier task1_tier = 2;
-      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task1_tier_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task1_tier_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
       // .robocommand.common.v1.TaskTier task2_tier = 3;
-      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task2_tier_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task2_tier_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
       // .robocommand.common.v1.TaskTier task3_tier = 4;
-      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task3_tier_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task3_tier_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
       // .robocommand.common.v1.TaskTier task4_tier = 5;
-      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task4_tier_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task4_tier_), _Internal::kHasBitsOffset + 6, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
       // repeated .robocommand.common.v1.LatLng uav_geofence = 6;
       {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.uav_geofence_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+      // double uav_geofence_max_altitude_hae_m = 7;
+      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.uav_geofence_max_altitude_hae_m_), _Internal::kHasBitsOffset + 7, 0, (0 | ::_fl::kFcOptional | ::_fl::kDouble)},
+      // string uav_pilot_callsign = 8;
+      {PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.uav_pilot_callsign_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     }},
     {{
         #ifndef PROTOBUF_MESSAGE_GLOBALS
@@ -115,9 +125,10 @@ constexpr RunDeclaration::ParseTableT_ RunDeclaration::InternalGenerateParseTabl
         #endif
     }},
     {{
-      "\44\13\0\0\0\0\0\0"
+      "\44\13\0\0\0\0\0\0\22\0\0\0\0\0\0\0"
       "robocommand.robotx.v1.RunDeclaration"
       "vehicle_ids"
+      "uav_pilot_callsign"
     }},
   };
 }
@@ -137,10 +148,14 @@ inline constexpr RunDeclaration::Impl_::Impl_(
             PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.uav_geofence_)>()
          }
         ,
+        uav_pilot_callsign_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         task1_tier_{static_cast< ::robocommand::common::v1::TaskTier >(0)},
         task2_tier_{static_cast< ::robocommand::common::v1::TaskTier >(0)},
         task3_tier_{static_cast< ::robocommand::common::v1::TaskTier >(0)},
-        task4_tier_{static_cast< ::robocommand::common::v1::TaskTier >(0)} {}
+        task4_tier_{static_cast< ::robocommand::common::v1::TaskTier >(0)},
+        uav_geofence_max_altitude_hae_m_{0} {}
 
 template <typename>
 constexpr RunDeclaration::RunDeclaration(::_pbi::ConstantInitialized,
@@ -437,19 +452,23 @@ const ::uint32_t
         ~0u,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_._has_bits_),
-        9, // hasbit index offset
+        11, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.vehicle_ids_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.task1_tier_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.task2_tier_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.task3_tier_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.task4_tier_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.uav_geofence_),
+        PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.uav_geofence_max_altitude_hae_m_),
+        PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.uav_pilot_callsign_),
         0,
-        2,
         3,
         4,
         5,
+        6,
         1,
+        7,
+        2,
 };
 
 static const ::_pbi::MigrationSchema
@@ -470,7 +489,7 @@ const char descriptor_table_protodef_robotx_2frx_5frequests_2eproto[] ABSL_ATTRI
     "d\030\001 \001(\t\022\013\n\003seq\030\002 \001(\r\022+\n\007sent_at\030\003 \001(\0132\032."
     "google.protobuf.Timestamp\022@\n\017run_declara"
     "tion\030\n \001(\0132%.robocommand.robotx.v1.RunDe"
-    "clarationH\000B\006\n\004body\"\256\002\n\016RunDeclaration\022\023"
+    "clarationH\000B\006\n\004body\"\363\002\n\016RunDeclaration\022\023"
     "\n\013vehicle_ids\030\001 \003(\t\0223\n\ntask1_tier\030\002 \001(\0162"
     "\037.robocommand.common.v1.TaskTier\0223\n\ntask"
     "2_tier\030\003 \001(\0162\037.robocommand.common.v1.Tas"
@@ -478,7 +497,9 @@ const char descriptor_table_protodef_robotx_2frx_5frequests_2eproto[] ABSL_ATTRI
     "common.v1.TaskTier\0223\n\ntask4_tier\030\005 \001(\0162\037"
     ".robocommand.common.v1.TaskTier\0223\n\014uav_g"
     "eofence\030\006 \003(\0132\035.robocommand.common.v1.La"
-    "tLngb\010editionsp\351\007"
+    "tLng\022\'\n\037uav_geofence_max_altitude_hae_m\030"
+    "\007 \001(\001\022\032\n\022uav_pilot_callsign\030\010 \001(\tb\010editi"
+    "onsp\351\007"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_robotx_2frx_5frequests_2eproto_deps[2] = {
@@ -489,7 +510,7 @@ static ::absl::once_flag descriptor_table_robotx_2frx_5frequests_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_robotx_2frx_5frequests_2eproto = {
     false,
     false,
-    577,
+    646,
     descriptor_table_protodef_robotx_2frx_5frequests_2eproto,
     "robotx/rx_requests.proto",
     &descriptor_table_robotx_2frx_5frequests_2eproto_once,
@@ -905,7 +926,8 @@ PROTOBUF_NDEBUG_INLINE RunDeclaration::Impl_::Impl_(
               PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.uav_geofence_)>()
           , from.uav_geofence_
         }
-     {}
+        ,
+        uav_pilot_callsign_(arena, from.uav_pilot_callsign_) {}
 
 RunDeclaration::RunDeclaration(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -925,9 +947,9 @@ RunDeclaration::RunDeclaration(
                offsetof(Impl_, task1_tier_),
            reinterpret_cast<const char*>(&from._impl_) +
                offsetof(Impl_, task1_tier_),
-           offsetof(Impl_, task4_tier_) -
+           offsetof(Impl_, uav_geofence_max_altitude_hae_m_) -
                offsetof(Impl_, task1_tier_) +
-               sizeof(Impl_::task4_tier_));
+               sizeof(Impl_::uav_geofence_max_altitude_hae_m_));
 
   // @@protoc_insertion_point(copy_constructor:robocommand.robotx.v1.RunDeclaration)
 }
@@ -944,16 +966,17 @@ PROTOBUF_NDEBUG_INLINE RunDeclaration::Impl_::Impl_(
             ::robocommand::robotx::v1::RunDeclaration,
             PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::RunDeclaration, _impl_.uav_geofence_)>()
          }
-     {}
+        ,
+        uav_pilot_callsign_(arena) {}
 
 inline void RunDeclaration::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char*>(&_impl_) +
                offsetof(Impl_, task1_tier_),
            0,
-           offsetof(Impl_, task4_tier_) -
+           offsetof(Impl_, uav_geofence_max_altitude_hae_m_) -
                offsetof(Impl_, task1_tier_) +
-               sizeof(Impl_::task4_tier_));
+               sizeof(Impl_::uav_geofence_max_altitude_hae_m_));
 }
 RunDeclaration::~RunDeclaration() {
   // @@protoc_insertion_point(destructor:robocommand.robotx.v1.RunDeclaration)
@@ -966,6 +989,7 @@ inline void RunDeclaration::SharedDtor(MessageLite& self) {
   }
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.uav_pilot_callsign_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -1003,18 +1027,21 @@ PROTOBUF_NOINLINE void RunDeclaration::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       _impl_.vehicle_ids_.Clear();
     }
     if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       _impl_.uav_geofence_.Clear();
     }
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      _impl_.uav_pilot_callsign_.ClearNonDefaultToEmpty();
+    }
   }
-  if (BatchCheckHasBit(cached_has_bits, 0x0000003cU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x000000f8U)) {
     ::memset(&_impl_.task1_tier_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.task4_tier_) -
-        reinterpret_cast<char*>(&_impl_.task1_tier_)) + sizeof(_impl_.task4_tier_));
+        reinterpret_cast<char*>(&_impl_.uav_geofence_max_altitude_hae_m_) -
+        reinterpret_cast<char*>(&_impl_.task1_tier_)) + sizeof(_impl_.uav_geofence_max_altitude_hae_m_));
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -1050,28 +1077,28 @@ PROTOBUF_NOINLINE void RunDeclaration::Clear() {
   }
 
   // .robocommand.common.v1.TaskTier task1_tier = 2;
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         2, this_._internal_task1_tier(), target);
   }
 
   // .robocommand.common.v1.TaskTier task2_tier = 3;
-  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         3, this_._internal_task2_tier(), target);
   }
 
   // .robocommand.common.v1.TaskTier task3_tier = 4;
-  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000020U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         4, this_._internal_task3_tier(), target);
   }
 
   // .robocommand.common.v1.TaskTier task4_tier = 5;
-  if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000040U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         5, this_._internal_task4_tier(), target);
@@ -1088,6 +1115,21 @@ PROTOBUF_NOINLINE void RunDeclaration::Clear() {
               6, repfield, repfield.GetCachedSize(),
               target, stream);
     }
+  }
+
+  // double uav_geofence_max_altitude_hae_m = 7;
+  if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(
+        7, this_._internal_uav_geofence_max_altitude_hae_m(), target);
+  }
+
+  // string uav_pilot_callsign = 8;
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    const ::absl::string_view _s = this_._internal_uav_pilot_callsign();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "robocommand.robotx.v1.RunDeclaration.uav_pilot_callsign");
+    target = stream->WriteStringMaybeAliased(8, _s, target);
   }
 
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -1115,7 +1157,8 @@ PROTOBUF_NOINLINE void RunDeclaration::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000003fU)) {
+  total_size += static_cast<bool>(0x00000080U & cached_has_bits) * 9;
+  if (BatchCheckHasBit(cached_has_bits, 0x0000007fU)) {
     // repeated string vehicle_ids = 1;
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       total_size +=
@@ -1132,23 +1175,28 @@ PROTOBUF_NOINLINE void RunDeclaration::Clear() {
         total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
       }
     }
-    // .robocommand.common.v1.TaskTier task1_tier = 2;
+    // string uav_pilot_callsign = 8;
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this_._internal_uav_pilot_callsign());
+    }
+    // .robocommand.common.v1.TaskTier task1_tier = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       total_size += 1 +
                     ::_pbi::WireFormatLite::EnumSize(this_._internal_task1_tier());
     }
     // .robocommand.common.v1.TaskTier task2_tier = 3;
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
       total_size += 1 +
                     ::_pbi::WireFormatLite::EnumSize(this_._internal_task2_tier());
     }
     // .robocommand.common.v1.TaskTier task3_tier = 4;
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       total_size += 1 +
                     ::_pbi::WireFormatLite::EnumSize(this_._internal_task3_tier());
     }
     // .robocommand.common.v1.TaskTier task4_tier = 5;
-    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
       total_size += 1 +
                     ::_pbi::WireFormatLite::EnumSize(this_._internal_task4_tier());
     }
@@ -1171,7 +1219,7 @@ void RunDeclaration::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000003fU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x000000ffU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       _this->_internal_mutable_vehicle_ids()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
@@ -1183,16 +1231,22 @@ void RunDeclaration::MergeImpl(::google::protobuf::MessageLite& to_msg,
           from._internal_uav_geofence());
     }
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-      _this->_impl_.task1_tier_ = from._impl_.task1_tier_;
+      _this->_internal_set_uav_pilot_callsign(from._internal_uav_pilot_callsign());
     }
     if (CheckHasBit(cached_has_bits, 0x00000008U)) {
-      _this->_impl_.task2_tier_ = from._impl_.task2_tier_;
+      _this->_impl_.task1_tier_ = from._impl_.task1_tier_;
     }
     if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      _this->_impl_.task3_tier_ = from._impl_.task3_tier_;
+      _this->_impl_.task2_tier_ = from._impl_.task2_tier_;
     }
     if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+      _this->_impl_.task3_tier_ = from._impl_.task3_tier_;
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
       _this->_impl_.task4_tier_ = from._impl_.task4_tier_;
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+      _this->_impl_.uav_geofence_max_altitude_hae_m_ = from._impl_.uav_geofence_max_altitude_hae_m_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -1210,13 +1264,16 @@ void RunDeclaration::CopyFrom(const RunDeclaration& from) {
 
 void RunDeclaration::InternalSwap(RunDeclaration* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.vehicle_ids_.InternalSwap(&other->_impl_.vehicle_ids_);
   _impl_.uav_geofence_.InternalSwap(&other->_impl_.uav_geofence_);
+  _impl_.uav_pilot_callsign_.InternalSwap(&_impl_.uav_pilot_callsign_, &other->_impl_.uav_pilot_callsign_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task4_tier_)
-      + sizeof(RunDeclaration::_impl_.task4_tier_)
+      PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.uav_geofence_max_altitude_hae_m_)
+      + sizeof(RunDeclaration::_impl_.uav_geofence_max_altitude_hae_m_)
       - PROTOBUF_FIELD_OFFSET(RunDeclaration, _impl_.task1_tier_)>(
           reinterpret_cast<char*>(&_impl_.task1_tier_),
           reinterpret_cast<char*>(&other->_impl_.task1_tier_));

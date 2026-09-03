@@ -241,10 +241,12 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED RunDeclaration final : public ::goo
   enum : int {
     kVehicleIdsFieldNumber = 1,
     kUavGeofenceFieldNumber = 6,
+    kUavPilotCallsignFieldNumber = 8,
     kTask1TierFieldNumber = 2,
     kTask2TierFieldNumber = 3,
     kTask3TierFieldNumber = 4,
     kTask4TierFieldNumber = 5,
+    kUavGeofenceMaxAltitudeHaeMFieldNumber = 7,
   };
   // repeated string vehicle_ids = 1;
   [[nodiscard]] int vehicle_ids_size()
@@ -290,6 +292,19 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED RunDeclaration final : public ::goo
   private:
   const ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>& _internal_uav_geofence() const;
   ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>* PROTOBUF_NONNULL _internal_mutable_uav_geofence();
+
+  public:
+  // string uav_pilot_callsign = 8;
+  [[nodiscard]] bool has_uav_pilot_callsign()
+      const;
+  void clear_uav_pilot_callsign() ;
+  [[nodiscard]] ::absl::string_view uav_pilot_callsign() const;
+  template <typename Arg_ = ::std::string&&>
+  void set_uav_pilot_callsign(Arg_&& arg);
+
+  private:
+  ::absl::string_view _internal_uav_pilot_callsign() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_uav_pilot_callsign(::absl::string_view value);
 
   public:
   // .robocommand.common.v1.TaskTier task1_tier = 2;
@@ -340,12 +355,24 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED RunDeclaration final : public ::goo
   void _internal_set_task4_tier(::robocommand::common::v1::TaskTier value);
 
   public:
+  // double uav_geofence_max_altitude_hae_m = 7;
+  [[nodiscard]] bool has_uav_geofence_max_altitude_hae_m()
+      const;
+  void clear_uav_geofence_max_altitude_hae_m() ;
+  [[nodiscard]] double uav_geofence_max_altitude_hae_m() const;
+  void set_uav_geofence_max_altitude_hae_m(double value);
+
+  private:
+  double _internal_uav_geofence_max_altitude_hae_m() const;
+  void _internal_set_uav_geofence_max_altitude_hae_m(double value);
+
+  public:
   // @@protoc_insertion_point(class_scope:robocommand.robotx.v1.RunDeclaration)
  private:
   class _Internal;
   using ParseTableT_ =
-      ::google::protobuf::internal::TcParseTable<3, 6,
-                          1, 56,
+      ::google::protobuf::internal::TcParseTable<3, 8,
+                          1, 82,
                           2>;
   static constexpr ParseTableT_ InternalGenerateParseTable_(
       const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL class_data);
@@ -375,10 +402,12 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED RunDeclaration final : public ::goo
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<::std::string> vehicle_ids_;
     ::google::protobuf::RepeatedPtrField< ::robocommand::common::v1::LatLng > uav_geofence_;
+    ::google::protobuf::internal::ArenaStringPtr uav_pilot_callsign_;
     int task1_tier_;
     int task2_tier_;
     int task3_tier_;
     int task4_tier_;
+    double uav_geofence_max_altitude_hae_m_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -980,13 +1009,13 @@ RunDeclaration::_internal_mutable_vehicle_ids() {
 
 // .robocommand.common.v1.TaskTier task1_tier = 2;
 inline bool RunDeclaration::has_task1_tier() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
   return value;
 }
 inline void RunDeclaration::clear_task1_tier() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.task1_tier_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
 }
 inline ::robocommand::common::v1::TaskTier RunDeclaration::task1_tier() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.RunDeclaration.task1_tier)
@@ -994,7 +1023,7 @@ inline ::robocommand::common::v1::TaskTier RunDeclaration::task1_tier() const {
 }
 inline void RunDeclaration::set_task1_tier(::robocommand::common::v1::TaskTier value) {
   _internal_set_task1_tier(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.RunDeclaration.task1_tier)
 }
 inline ::robocommand::common::v1::TaskTier RunDeclaration::_internal_task1_tier() const {
@@ -1008,13 +1037,13 @@ inline void RunDeclaration::_internal_set_task1_tier(::robocommand::common::v1::
 
 // .robocommand.common.v1.TaskTier task2_tier = 3;
 inline bool RunDeclaration::has_task2_tier() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000010U);
   return value;
 }
 inline void RunDeclaration::clear_task2_tier() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.task2_tier_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
 }
 inline ::robocommand::common::v1::TaskTier RunDeclaration::task2_tier() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.RunDeclaration.task2_tier)
@@ -1022,7 +1051,7 @@ inline ::robocommand::common::v1::TaskTier RunDeclaration::task2_tier() const {
 }
 inline void RunDeclaration::set_task2_tier(::robocommand::common::v1::TaskTier value) {
   _internal_set_task2_tier(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.RunDeclaration.task2_tier)
 }
 inline ::robocommand::common::v1::TaskTier RunDeclaration::_internal_task2_tier() const {
@@ -1036,13 +1065,13 @@ inline void RunDeclaration::_internal_set_task2_tier(::robocommand::common::v1::
 
 // .robocommand.common.v1.TaskTier task3_tier = 4;
 inline bool RunDeclaration::has_task3_tier() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000010U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000020U);
   return value;
 }
 inline void RunDeclaration::clear_task3_tier() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.task3_tier_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
 }
 inline ::robocommand::common::v1::TaskTier RunDeclaration::task3_tier() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.RunDeclaration.task3_tier)
@@ -1050,7 +1079,7 @@ inline ::robocommand::common::v1::TaskTier RunDeclaration::task3_tier() const {
 }
 inline void RunDeclaration::set_task3_tier(::robocommand::common::v1::TaskTier value) {
   _internal_set_task3_tier(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000020U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.RunDeclaration.task3_tier)
 }
 inline ::robocommand::common::v1::TaskTier RunDeclaration::_internal_task3_tier() const {
@@ -1064,13 +1093,13 @@ inline void RunDeclaration::_internal_set_task3_tier(::robocommand::common::v1::
 
 // .robocommand.common.v1.TaskTier task4_tier = 5;
 inline bool RunDeclaration::has_task4_tier() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000020U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000040U);
   return value;
 }
 inline void RunDeclaration::clear_task4_tier() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.task4_tier_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000040U);
 }
 inline ::robocommand::common::v1::TaskTier RunDeclaration::task4_tier() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.RunDeclaration.task4_tier)
@@ -1078,7 +1107,7 @@ inline ::robocommand::common::v1::TaskTier RunDeclaration::task4_tier() const {
 }
 inline void RunDeclaration::set_task4_tier(::robocommand::common::v1::TaskTier value) {
   _internal_set_task4_tier(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000020U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000040U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.RunDeclaration.task4_tier)
 }
 inline ::robocommand::common::v1::TaskTier RunDeclaration::_internal_task4_tier() const {
@@ -1138,6 +1167,66 @@ inline ::google::protobuf::RepeatedPtrField<::robocommand::common::v1::LatLng>* 
 RunDeclaration::_internal_mutable_uav_geofence() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.uav_geofence_;
+}
+
+// double uav_geofence_max_altitude_hae_m = 7;
+inline bool RunDeclaration::has_uav_geofence_max_altitude_hae_m() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000080U);
+  return value;
+}
+inline void RunDeclaration::clear_uav_geofence_max_altitude_hae_m() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.uav_geofence_max_altitude_hae_m_ = 0;
+  ClearHasBit(_impl_._has_bits_[0], 0x00000080U);
+}
+inline double RunDeclaration::uav_geofence_max_altitude_hae_m() const {
+  // @@protoc_insertion_point(field_get:robocommand.robotx.v1.RunDeclaration.uav_geofence_max_altitude_hae_m)
+  return _internal_uav_geofence_max_altitude_hae_m();
+}
+inline void RunDeclaration::set_uav_geofence_max_altitude_hae_m(double value) {
+  _internal_set_uav_geofence_max_altitude_hae_m(value);
+  SetHasBit(_impl_._has_bits_[0], 0x00000080U);
+  // @@protoc_insertion_point(field_set:robocommand.robotx.v1.RunDeclaration.uav_geofence_max_altitude_hae_m)
+}
+inline double RunDeclaration::_internal_uav_geofence_max_altitude_hae_m() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.uav_geofence_max_altitude_hae_m_;
+}
+inline void RunDeclaration::_internal_set_uav_geofence_max_altitude_hae_m(double value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.uav_geofence_max_altitude_hae_m_ = value;
+}
+
+// string uav_pilot_callsign = 8;
+inline bool RunDeclaration::has_uav_pilot_callsign() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
+  return value;
+}
+inline void RunDeclaration::clear_uav_pilot_callsign() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.uav_pilot_callsign_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+}
+inline ::absl::string_view RunDeclaration::uav_pilot_callsign() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:robocommand.robotx.v1.RunDeclaration.uav_pilot_callsign)
+  return _internal_uav_pilot_callsign();
+}
+template <typename Arg_>
+PROTOBUF_ALWAYS_INLINE void RunDeclaration::set_uav_pilot_callsign(Arg_&& arg) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  _impl_.uav_pilot_callsign_.Set(static_cast<Arg_&&>(arg), GetArena());
+  // @@protoc_insertion_point(field_set:robocommand.robotx.v1.RunDeclaration.uav_pilot_callsign)
+}
+inline ::absl::string_view RunDeclaration::_internal_uav_pilot_callsign() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.uav_pilot_callsign_.Get();
+}
+inline void RunDeclaration::_internal_set_uav_pilot_callsign(::absl::string_view value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  _impl_.uav_pilot_callsign_.Set(value, GetArena());
 }
 
 #ifdef __GNUC__

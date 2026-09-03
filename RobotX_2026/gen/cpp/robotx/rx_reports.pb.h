@@ -1578,6 +1578,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED Heartbeat final : public ::google::
 
   // accessors -------------------------------------------------------
   enum : int {
+    kUavRegistrationFieldNumber = 12,
     kPositionFieldNumber = 2,
     kStateFieldNumber = 1,
     kSpdMpsFieldNumber = 3,
@@ -1590,6 +1591,19 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED Heartbeat final : public ::google::
     kVehicleTypeFieldNumber = 10,
     kFlightPhaseFieldNumber = 11,
   };
+  // string uav_registration = 12;
+  [[nodiscard]] bool has_uav_registration()
+      const;
+  void clear_uav_registration() ;
+  [[nodiscard]] ::absl::string_view uav_registration() const;
+  template <typename Arg_ = ::std::string&&>
+  void set_uav_registration(Arg_&& arg);
+
+  private:
+  ::absl::string_view _internal_uav_registration() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_uav_registration(::absl::string_view value);
+
+  public:
   // .robocommand.common.v1.LatLng position = 2;
   [[nodiscard]] bool has_position()
       const;
@@ -1730,8 +1744,8 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED Heartbeat final : public ::google::
  private:
   class _Internal;
   using ParseTableT_ =
-      ::google::protobuf::internal::TcParseTable<4, 11,
-                          1, 0,
+      ::google::protobuf::internal::TcParseTable<4, 12,
+                          1, 64,
                           2>;
   static constexpr ParseTableT_ InternalGenerateParseTable_(
       const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL class_data);
@@ -1759,6 +1773,7 @@ class  PROTOBUF_FUTURE_ADD_EARLY_WARN_UNUSED Heartbeat final : public ::google::
         const Heartbeat& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr uav_registration_;
     ::robocommand::common::v1::LatLng* PROTOBUF_NULLABLE position_;
     int state_;
     float spd_mps_;
@@ -3572,13 +3587,13 @@ inline RxReport::BodyCase RxReport::body_case() const {
 
 // .robocommand.common.v1.RobotState state = 1;
 inline bool Heartbeat::has_state() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000002U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
   return value;
 }
 inline void Heartbeat::clear_state() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.state_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
 }
 inline ::robocommand::common::v1::RobotState Heartbeat::state() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.state)
@@ -3586,7 +3601,7 @@ inline ::robocommand::common::v1::RobotState Heartbeat::state() const {
 }
 inline void Heartbeat::set_state(::robocommand::common::v1::RobotState value) {
   _internal_set_state(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.state)
 }
 inline ::robocommand::common::v1::RobotState Heartbeat::_internal_state() const {
@@ -3600,7 +3615,7 @@ inline void Heartbeat::_internal_set_state(::robocommand::common::v1::RobotState
 
 // .robocommand.common.v1.LatLng position = 2;
 inline bool Heartbeat::has_position() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000001U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000002U);
   PROTOBUF_ASSUME(!value || _impl_.position_ != nullptr);
   return value;
 }
@@ -3621,16 +3636,16 @@ inline void Heartbeat::unsafe_arena_set_allocated_position(
   }
   _impl_.position_ = reinterpret_cast<::robocommand::common::v1::LatLng*>(value);
   if (value != nullptr) {
-    SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:robocommand.robotx.v1.Heartbeat.position)
 }
 inline ::robocommand::common::v1::LatLng* PROTOBUF_NULLABLE Heartbeat::release_position() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
   ::robocommand::common::v1::LatLng* released = _impl_.position_;
   _impl_.position_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -3650,7 +3665,7 @@ inline ::robocommand::common::v1::LatLng* PROTOBUF_NULLABLE Heartbeat::unsafe_ar
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:robocommand.robotx.v1.Heartbeat.position)
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
   ::robocommand::common::v1::LatLng* temp = _impl_.position_;
   _impl_.position_ = nullptr;
   return temp;
@@ -3665,7 +3680,7 @@ inline ::robocommand::common::v1::LatLng* PROTOBUF_NONNULL Heartbeat::_internal_
 }
 inline ::robocommand::common::v1::LatLng* PROTOBUF_NONNULL Heartbeat::mutable_position()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   ::robocommand::common::v1::LatLng* _msg = _internal_mutable_position();
   // @@protoc_insertion_point(field_mutable:robocommand.robotx.v1.Heartbeat.position)
   return _msg;
@@ -3682,9 +3697,9 @@ inline void Heartbeat::set_allocated_position(::robocommand::common::v1::LatLng*
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
   }
 
   _impl_.position_ = reinterpret_cast<::robocommand::common::v1::LatLng*>(value);
@@ -3693,13 +3708,13 @@ inline void Heartbeat::set_allocated_position(::robocommand::common::v1::LatLng*
 
 // float spd_mps = 3;
 inline bool Heartbeat::has_spd_mps() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
   return value;
 }
 inline void Heartbeat::clear_spd_mps() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.spd_mps_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
 }
 inline float Heartbeat::spd_mps() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.spd_mps)
@@ -3707,7 +3722,7 @@ inline float Heartbeat::spd_mps() const {
 }
 inline void Heartbeat::set_spd_mps(float value) {
   _internal_set_spd_mps(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.spd_mps)
 }
 inline float Heartbeat::_internal_spd_mps() const {
@@ -3721,13 +3736,13 @@ inline void Heartbeat::_internal_set_spd_mps(float value) {
 
 // float heading_deg = 4;
 inline bool Heartbeat::has_heading_deg() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000010U);
   return value;
 }
 inline void Heartbeat::clear_heading_deg() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.heading_deg_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
 }
 inline float Heartbeat::heading_deg() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.heading_deg)
@@ -3735,7 +3750,7 @@ inline float Heartbeat::heading_deg() const {
 }
 inline void Heartbeat::set_heading_deg(float value) {
   _internal_set_heading_deg(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.heading_deg)
 }
 inline float Heartbeat::_internal_heading_deg() const {
@@ -3749,13 +3764,13 @@ inline void Heartbeat::_internal_set_heading_deg(float value) {
 
 // float roll_deg = 5;
 inline bool Heartbeat::has_roll_deg() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000010U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000020U);
   return value;
 }
 inline void Heartbeat::clear_roll_deg() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.roll_deg_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
 }
 inline float Heartbeat::roll_deg() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.roll_deg)
@@ -3763,7 +3778,7 @@ inline float Heartbeat::roll_deg() const {
 }
 inline void Heartbeat::set_roll_deg(float value) {
   _internal_set_roll_deg(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000020U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.roll_deg)
 }
 inline float Heartbeat::_internal_roll_deg() const {
@@ -3777,13 +3792,13 @@ inline void Heartbeat::_internal_set_roll_deg(float value) {
 
 // float pitch_deg = 6;
 inline bool Heartbeat::has_pitch_deg() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000020U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000040U);
   return value;
 }
 inline void Heartbeat::clear_pitch_deg() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.pitch_deg_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000040U);
 }
 inline float Heartbeat::pitch_deg() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.pitch_deg)
@@ -3791,7 +3806,7 @@ inline float Heartbeat::pitch_deg() const {
 }
 inline void Heartbeat::set_pitch_deg(float value) {
   _internal_set_pitch_deg(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000020U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000040U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.pitch_deg)
 }
 inline float Heartbeat::_internal_pitch_deg() const {
@@ -3805,13 +3820,13 @@ inline void Heartbeat::_internal_set_pitch_deg(float value) {
 
 // float altitude_hae_m = 7;
 inline bool Heartbeat::has_altitude_hae_m() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000040U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000080U);
   return value;
 }
 inline void Heartbeat::clear_altitude_hae_m() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.altitude_hae_m_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000040U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000080U);
 }
 inline float Heartbeat::altitude_hae_m() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.altitude_hae_m)
@@ -3819,7 +3834,7 @@ inline float Heartbeat::altitude_hae_m() const {
 }
 inline void Heartbeat::set_altitude_hae_m(float value) {
   _internal_set_altitude_hae_m(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000040U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000080U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.altitude_hae_m)
 }
 inline float Heartbeat::_internal_altitude_hae_m() const {
@@ -3833,13 +3848,13 @@ inline void Heartbeat::_internal_set_altitude_hae_m(float value) {
 
 // float depth_m = 8;
 inline bool Heartbeat::has_depth_m() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000080U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000100U);
   return value;
 }
 inline void Heartbeat::clear_depth_m() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.depth_m_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000080U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000100U);
 }
 inline float Heartbeat::depth_m() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.depth_m)
@@ -3847,7 +3862,7 @@ inline float Heartbeat::depth_m() const {
 }
 inline void Heartbeat::set_depth_m(float value) {
   _internal_set_depth_m(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000080U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000100U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.depth_m)
 }
 inline float Heartbeat::_internal_depth_m() const {
@@ -3861,13 +3876,13 @@ inline void Heartbeat::_internal_set_depth_m(float value) {
 
 // .robocommand.robotx.v1.RxTask current_task = 9;
 inline bool Heartbeat::has_current_task() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000100U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000200U);
   return value;
 }
 inline void Heartbeat::clear_current_task() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.current_task_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000100U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000200U);
 }
 inline ::robocommand::robotx::v1::RxTask Heartbeat::current_task() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.current_task)
@@ -3875,7 +3890,7 @@ inline ::robocommand::robotx::v1::RxTask Heartbeat::current_task() const {
 }
 inline void Heartbeat::set_current_task(::robocommand::robotx::v1::RxTask value) {
   _internal_set_current_task(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000100U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000200U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.current_task)
 }
 inline ::robocommand::robotx::v1::RxTask Heartbeat::_internal_current_task() const {
@@ -3889,13 +3904,13 @@ inline void Heartbeat::_internal_set_current_task(::robocommand::robotx::v1::RxT
 
 // .robocommand.robotx.v1.VehicleType vehicle_type = 10;
 inline bool Heartbeat::has_vehicle_type() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000200U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000400U);
   return value;
 }
 inline void Heartbeat::clear_vehicle_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.vehicle_type_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000200U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000400U);
 }
 inline ::robocommand::robotx::v1::VehicleType Heartbeat::vehicle_type() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.vehicle_type)
@@ -3903,7 +3918,7 @@ inline ::robocommand::robotx::v1::VehicleType Heartbeat::vehicle_type() const {
 }
 inline void Heartbeat::set_vehicle_type(::robocommand::robotx::v1::VehicleType value) {
   _internal_set_vehicle_type(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000200U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000400U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.vehicle_type)
 }
 inline ::robocommand::robotx::v1::VehicleType Heartbeat::_internal_vehicle_type() const {
@@ -3917,13 +3932,13 @@ inline void Heartbeat::_internal_set_vehicle_type(::robocommand::robotx::v1::Veh
 
 // .robocommand.robotx.v1.FlightPhase flight_phase = 11;
 inline bool Heartbeat::has_flight_phase() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000400U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000800U);
   return value;
 }
 inline void Heartbeat::clear_flight_phase() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.flight_phase_ = 0;
-  ClearHasBit(_impl_._has_bits_[0], 0x00000400U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000800U);
 }
 inline ::robocommand::robotx::v1::FlightPhase Heartbeat::flight_phase() const {
   // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.flight_phase)
@@ -3931,7 +3946,7 @@ inline ::robocommand::robotx::v1::FlightPhase Heartbeat::flight_phase() const {
 }
 inline void Heartbeat::set_flight_phase(::robocommand::robotx::v1::FlightPhase value) {
   _internal_set_flight_phase(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000400U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000800U);
   // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.flight_phase)
 }
 inline ::robocommand::robotx::v1::FlightPhase Heartbeat::_internal_flight_phase() const {
@@ -3941,6 +3956,38 @@ inline ::robocommand::robotx::v1::FlightPhase Heartbeat::_internal_flight_phase(
 inline void Heartbeat::_internal_set_flight_phase(::robocommand::robotx::v1::FlightPhase value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.flight_phase_ = value;
+}
+
+// string uav_registration = 12;
+inline bool Heartbeat::has_uav_registration() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000001U);
+  return value;
+}
+inline void Heartbeat::clear_uav_registration() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.uav_registration_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+}
+inline ::absl::string_view Heartbeat::uav_registration() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:robocommand.robotx.v1.Heartbeat.uav_registration)
+  return _internal_uav_registration();
+}
+template <typename Arg_>
+PROTOBUF_ALWAYS_INLINE void Heartbeat::set_uav_registration(Arg_&& arg) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  _impl_.uav_registration_.Set(static_cast<Arg_&&>(arg), GetArena());
+  // @@protoc_insertion_point(field_set:robocommand.robotx.v1.Heartbeat.uav_registration)
+}
+inline ::absl::string_view Heartbeat::_internal_uav_registration() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.uav_registration_.Get();
+}
+inline void Heartbeat::_internal_set_uav_registration(::absl::string_view value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000001U);
+  _impl_.uav_registration_.Set(value, GetArena());
 }
 
 // -------------------------------------------------------------------

@@ -26,7 +26,7 @@ from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__
 import common_pb2 as common__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16robotx/rx_course.proto\x12\x15robocommand.robotx.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0c\x63ommon.proto\"\x92\x01\n\x08RxCourse\x12\x11\n\tcourse_id\x18\x01 \x01(\t\x12\x16\n\x0epinger_freq_hz\x18\x02 \x01(\r\x12.\n\x07\x63orners\x18\x03 \x03(\x0b\x32\x1d.robocommand.common.v1.LatLng\x12+\n\x07sent_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestampb\x08\x65\x64itionsp\xe9\x07')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16robotx/rx_course.proto\x12\x15robocommand.robotx.v1\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0c\x63ommon.proto\"\xcb\x01\n\x08RxCourse\x12\x11\n\tcourse_id\x18\x01 \x01(\t\x12\x16\n\x0epinger_freq_hz\x18\x02 \x01(\r\x12.\n\x07\x63orners\x18\x03 \x03(\x0b\x32\x1d.robocommand.common.v1.LatLng\x12+\n\x07sent_at\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x37\n\x10uav_transit_area\x18\x05 \x03(\x0b\x32\x1d.robocommand.common.v1.LatLngb\x08\x65\x64itionsp\xe9\x07')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -34,5 +34,5 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'robotx.rx_course_pb2', _glo
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_RXCOURSE']._serialized_start=97
-  _globals['_RXCOURSE']._serialized_end=243
+  _globals['_RXCOURSE']._serialized_end=300
 # @@protoc_insertion_point(module_scope)

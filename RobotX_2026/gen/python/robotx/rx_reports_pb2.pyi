@@ -40,7 +40,7 @@ class RxReport(_message.Message):
     def __init__(self, team_id: _Optional[str] = ..., vehicle_id: _Optional[str] = ..., seq: _Optional[int] = ..., sent_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., heartbeat: _Optional[_Union[Heartbeat, _Mapping]] = ..., safe_passage: _Optional[_Union[SafePassageReport, _Mapping]] = ..., pipeline_survey: _Optional[_Union[PipelineSurveyReport, _Mapping]] = ..., resource_delivery: _Optional[_Union[ResourceDeliveryRequest, _Mapping]] = ..., docking: _Optional[_Union[DockingReport, _Mapping]] = ..., firefighting: _Optional[_Union[FirefightingReport, _Mapping]] = ..., incident_ack: _Optional[_Union[IncidentAck, _Mapping]] = ..., readiness: _Optional[_Union[ReadinessReport, _Mapping]] = ...) -> None: ...
 
 class Heartbeat(_message.Message):
-    __slots__ = ("state", "position", "spd_mps", "heading_deg", "roll_deg", "pitch_deg", "altitude_hae_m", "depth_m", "current_task", "vehicle_type", "flight_phase")
+    __slots__ = ("state", "position", "spd_mps", "heading_deg", "roll_deg", "pitch_deg", "altitude_hae_m", "depth_m", "current_task", "vehicle_type", "flight_phase", "uav_registration")
     STATE_FIELD_NUMBER: _ClassVar[int]
     POSITION_FIELD_NUMBER: _ClassVar[int]
     SPD_MPS_FIELD_NUMBER: _ClassVar[int]
@@ -52,6 +52,7 @@ class Heartbeat(_message.Message):
     CURRENT_TASK_FIELD_NUMBER: _ClassVar[int]
     VEHICLE_TYPE_FIELD_NUMBER: _ClassVar[int]
     FLIGHT_PHASE_FIELD_NUMBER: _ClassVar[int]
+    UAV_REGISTRATION_FIELD_NUMBER: _ClassVar[int]
     state: _common_pb2.RobotState
     position: _common_pb2.LatLng
     spd_mps: float
@@ -63,7 +64,8 @@ class Heartbeat(_message.Message):
     current_task: _rx_common_pb2.RxTask
     vehicle_type: _rx_common_pb2.VehicleType
     flight_phase: _rx_common_pb2.FlightPhase
-    def __init__(self, state: _Optional[_Union[_common_pb2.RobotState, str]] = ..., position: _Optional[_Union[_common_pb2.LatLng, _Mapping]] = ..., spd_mps: _Optional[float] = ..., heading_deg: _Optional[float] = ..., roll_deg: _Optional[float] = ..., pitch_deg: _Optional[float] = ..., altitude_hae_m: _Optional[float] = ..., depth_m: _Optional[float] = ..., current_task: _Optional[_Union[_rx_common_pb2.RxTask, str]] = ..., vehicle_type: _Optional[_Union[_rx_common_pb2.VehicleType, str]] = ..., flight_phase: _Optional[_Union[_rx_common_pb2.FlightPhase, str]] = ...) -> None: ...
+    uav_registration: str
+    def __init__(self, state: _Optional[_Union[_common_pb2.RobotState, str]] = ..., position: _Optional[_Union[_common_pb2.LatLng, _Mapping]] = ..., spd_mps: _Optional[float] = ..., heading_deg: _Optional[float] = ..., roll_deg: _Optional[float] = ..., pitch_deg: _Optional[float] = ..., altitude_hae_m: _Optional[float] = ..., depth_m: _Optional[float] = ..., current_task: _Optional[_Union[_rx_common_pb2.RxTask, str]] = ..., vehicle_type: _Optional[_Union[_rx_common_pb2.VehicleType, str]] = ..., flight_phase: _Optional[_Union[_rx_common_pb2.FlightPhase, str]] = ..., uav_registration: _Optional[str] = ...) -> None: ...
 
 class BuoyDetection(_message.Message):
     __slots__ = ("position", "state")

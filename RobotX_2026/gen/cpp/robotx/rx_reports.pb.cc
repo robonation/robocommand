@@ -946,11 +946,11 @@ constexpr Heartbeat::ParseTableT_ Heartbeat::InternalGenerateParseTable_(const :
     {
       PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_._has_bits_),
       0, // no _extensions_
-      11, 120,  // max_field_number, fast_idx_mask
+      12, 120,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294965248,  // skipmap
+      4294963200,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      11,  // num_field_entries
+      12,  // num_field_entries
       1,  // num_aux_entries
       offsetof(ParseTableT_, aux_entries),
       class_data,
@@ -962,50 +962,53 @@ constexpr Heartbeat::ParseTableT_ Heartbeat::InternalGenerateParseTable_(const :
     }, {{
       {::_pbi::TcParser::MiniParse, {}},
       // .robocommand.common.v1.RobotState state = 1;
-      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat, _impl_.state_), 1>(),
-       {8, 1, 0,
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat, _impl_.state_), 2>(),
+       {8, 2, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.state_)}},
       // .robocommand.common.v1.LatLng position = 2;
       {::_pbi::TcParser::FastMtS1,
-       {18, 0, 0,
+       {18, 1, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.position_)}},
       // float spd_mps = 3;
       {::_pbi::TcParser::FastF32S1,
-       {29, 2, 0,
+       {29, 3, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.spd_mps_)}},
       // float heading_deg = 4;
       {::_pbi::TcParser::FastF32S1,
-       {37, 3, 0,
+       {37, 4, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.heading_deg_)}},
       // float roll_deg = 5;
       {::_pbi::TcParser::FastF32S1,
-       {45, 4, 0,
+       {45, 5, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.roll_deg_)}},
       // float pitch_deg = 6;
       {::_pbi::TcParser::FastF32S1,
-       {53, 5, 0,
+       {53, 6, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.pitch_deg_)}},
       // float altitude_hae_m = 7;
       {::_pbi::TcParser::FastF32S1,
-       {61, 6, 0,
+       {61, 7, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.altitude_hae_m_)}},
       // float depth_m = 8;
       {::_pbi::TcParser::FastF32S1,
-       {69, 7, 0,
+       {69, 8, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.depth_m_)}},
       // .robocommand.robotx.v1.RxTask current_task = 9;
-      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat, _impl_.current_task_), 8>(),
-       {72, 8, 0,
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat, _impl_.current_task_), 9>(),
+       {72, 9, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.current_task_)}},
       // .robocommand.robotx.v1.VehicleType vehicle_type = 10;
-      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat, _impl_.vehicle_type_), 9>(),
-       {80, 9, 0,
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat, _impl_.vehicle_type_), 10>(),
+       {80, 10, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.vehicle_type_)}},
       // .robocommand.robotx.v1.FlightPhase flight_phase = 11;
-      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat, _impl_.flight_phase_), 10>(),
-       {88, 10, 0,
+      {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Heartbeat, _impl_.flight_phase_), 11>(),
+       {88, 11, 0,
         PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.flight_phase_)}},
-      {::_pbi::TcParser::MiniParse, {}},
+      // string uav_registration = 12;
+      {::_pbi::TcParser::FastUS1,
+       {98, 0, 0,
+        PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.uav_registration_)}},
       {::_pbi::TcParser::MiniParse, {}},
       {::_pbi::TcParser::MiniParse, {}},
       {::_pbi::TcParser::MiniParse, {}},
@@ -1013,27 +1016,29 @@ constexpr Heartbeat::ParseTableT_ Heartbeat::InternalGenerateParseTable_(const :
       65535, 65535
     }}, {{
       // .robocommand.common.v1.RobotState state = 1;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.state_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.state_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
       // .robocommand.common.v1.LatLng position = 2;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.position_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.position_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
       // float spd_mps = 3;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.spd_mps_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.spd_mps_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
       // float heading_deg = 4;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.heading_deg_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.heading_deg_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
       // float roll_deg = 5;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.roll_deg_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.roll_deg_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
       // float pitch_deg = 6;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.pitch_deg_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.pitch_deg_), _Internal::kHasBitsOffset + 6, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
       // float altitude_hae_m = 7;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.altitude_hae_m_), _Internal::kHasBitsOffset + 6, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.altitude_hae_m_), _Internal::kHasBitsOffset + 7, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
       // float depth_m = 8;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.depth_m_), _Internal::kHasBitsOffset + 7, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.depth_m_), _Internal::kHasBitsOffset + 8, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
       // .robocommand.robotx.v1.RxTask current_task = 9;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.current_task_), _Internal::kHasBitsOffset + 8, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.current_task_), _Internal::kHasBitsOffset + 9, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
       // .robocommand.robotx.v1.VehicleType vehicle_type = 10;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.vehicle_type_), _Internal::kHasBitsOffset + 9, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.vehicle_type_), _Internal::kHasBitsOffset + 10, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
       // .robocommand.robotx.v1.FlightPhase flight_phase = 11;
-      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.flight_phase_), _Internal::kHasBitsOffset + 10, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.flight_phase_), _Internal::kHasBitsOffset + 11, 0, (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+      // string uav_registration = 12;
+      {PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.uav_registration_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     }},
     {{
         #ifndef PROTOBUF_MESSAGE_GLOBALS
@@ -1043,6 +1048,9 @@ constexpr Heartbeat::ParseTableT_ Heartbeat::InternalGenerateParseTable_(const :
         #endif
     }},
     {{
+      "\37\0\0\0\0\0\0\0\0\0\0\0\20\0\0\0"
+      "robocommand.robotx.v1.Heartbeat"
+      "uav_registration"
     }},
   };
 }
@@ -1052,6 +1060,9 @@ inline constexpr Heartbeat::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
+        uav_registration_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
         position_{nullptr},
         state_{static_cast< ::robocommand::common::v1::RobotState >(0)},
         spd_mps_{0},
@@ -1080,7 +1091,7 @@ inline void* PROTOBUF_NONNULL Heartbeat::PlacementNew_(
   return ::new (mem) Heartbeat(arena);
 }
 constexpr auto Heartbeat::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Heartbeat), alignof(Heartbeat));
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Heartbeat), alignof(Heartbeat));
 }
 constexpr auto Heartbeat::InternalGenerateClassData_(
     const MessageLite& prototype,
@@ -1763,7 +1774,7 @@ const ::uint32_t
         ~0u,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::Heartbeat, _impl_._has_bits_),
-        14, // hasbit index offset
+        15, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::Heartbeat, _impl_.state_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::Heartbeat, _impl_.position_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::Heartbeat, _impl_.spd_mps_),
@@ -1775,9 +1786,9 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::Heartbeat, _impl_.current_task_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::Heartbeat, _impl_.vehicle_type_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::Heartbeat, _impl_.flight_phase_),
-        1,
-        0,
+        PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::Heartbeat, _impl_.uav_registration_),
         2,
+        1,
         3,
         4,
         5,
@@ -1786,6 +1797,8 @@ const ::uint32_t
         8,
         9,
         10,
+        11,
+        0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::BuoyDetection, _impl_._has_bits_),
         5, // hasbit index offset
@@ -1844,14 +1857,14 @@ static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::robocommand::robotx::v1::RxReport)},
         {29, sizeof(::robocommand::robotx::v1::Heartbeat)},
-        {54, sizeof(::robocommand::robotx::v1::BuoyDetection)},
-        {61, sizeof(::robocommand::robotx::v1::SafePassageReport)},
-        {70, sizeof(::robocommand::robotx::v1::PipelineSurveyReport)},
-        {77, sizeof(::robocommand::robotx::v1::ResourceDeliveryRequest)},
-        {86, sizeof(::robocommand::robotx::v1::DockingReport)},
-        {91, sizeof(::robocommand::robotx::v1::FirefightingReport)},
-        {96, sizeof(::robocommand::robotx::v1::IncidentAck)},
-        {101, sizeof(::robocommand::robotx::v1::ReadinessReport)},
+        {56, sizeof(::robocommand::robotx::v1::BuoyDetection)},
+        {63, sizeof(::robocommand::robotx::v1::SafePassageReport)},
+        {72, sizeof(::robocommand::robotx::v1::PipelineSurveyReport)},
+        {79, sizeof(::robocommand::robotx::v1::ResourceDeliveryRequest)},
+        {88, sizeof(::robocommand::robotx::v1::DockingReport)},
+        {93, sizeof(::robocommand::robotx::v1::FirefightingReport)},
+        {98, sizeof(::robocommand::robotx::v1::IncidentAck)},
+        {103, sizeof(::robocommand::robotx::v1::ReadinessReport)},
 };
 static const ::_pbi::MessageGlobalsBase* PROTOBUF_NONNULL const
     file_message_globals[] = {
@@ -1886,7 +1899,7 @@ const char descriptor_table_protodef_robotx_2frx_5freports_2eproto[] ABSL_ATTRIB
     ".FirefightingReportH\000\022:\n\014incident_ack\030\020 "
     "\001(\0132\".robocommand.robotx.v1.IncidentAckH"
     "\000\022;\n\treadiness\030\021 \001(\0132&.robocommand.robot"
-    "x.v1.ReadinessReportH\000B\006\n\004body\"\213\003\n\tHeart"
+    "x.v1.ReadinessReportH\000B\006\n\004body\"\245\003\n\tHeart"
     "beat\0220\n\005state\030\001 \001(\0162!.robocommand.common"
     ".v1.RobotState\022/\n\010position\030\002 \001(\0132\035.roboc"
     "ommand.common.v1.LatLng\022\017\n\007spd_mps\030\003 \001(\002"
@@ -1896,27 +1909,28 @@ const char descriptor_table_protodef_robotx_2frx_5freports_2eproto[] ABSL_ATTRIB
     "\0162\035.robocommand.robotx.v1.RxTask\0228\n\014vehi"
     "cle_type\030\n \001(\0162\".robocommand.robotx.v1.V"
     "ehicleType\0228\n\014flight_phase\030\013 \001(\0162\".roboc"
-    "ommand.robotx.v1.FlightPhase\"s\n\rBuoyDete"
-    "ction\022/\n\010position\030\001 \001(\0132\035.robocommand.co"
-    "mmon.v1.LatLng\0221\n\005state\030\002 \001(\0162\".robocomm"
-    "and.robotx.v1.BeaconState\"\265\001\n\021SafePassag"
-    "eReport\0225\n\016entry_position\030\001 \001(\0132\035.roboco"
-    "mmand.common.v1.LatLng\0224\n\rexit_position\030"
-    "\002 \001(\0132\035.robocommand.common.v1.LatLng\0223\n\005"
-    "buoys\030\003 \003(\0132$.robocommand.robotx.v1.Buoy"
-    "Detection\"\223\001\n\024PipelineSurveyReport\022;\n\024ac"
-    "tive_buoy_position\030\001 \001(\0132\035.robocommand.c"
-    "ommon.v1.LatLng\022>\n\010segments\030\002 \003(\0162,.robo"
-    "command.robotx.v1.PipelineSegmentStatus\""
-    "\271\001\n\027ResourceDeliveryRequest\022+\n\004task\030\001 \001("
-    "\0162\035.robocommand.robotx.v1.RxTask\0224\n\016reso"
-    "urce_color\030\002 \001(\0162\034.robocommand.robotx.v1"
-    ".Color\022;\n\025delivery_circle_color\030\003 \001(\0162\034."
-    "robocommand.robotx.v1.Color\"\037\n\rDockingRe"
-    "port\022\016\n\006bay_id\030\001 \001(\r\"\'\n\022FirefightingRepo"
-    "rt\022\021\n\twindow_id\030\001 \001(\r\"\"\n\013IncidentAck\022\023\n\013"
-    "command_seq\030\001 \001(\r\"&\n\017ReadinessReport\022\023\n\013"
-    "command_seq\030\001 \001(\rb\010editionsp\351\007"
+    "ommand.robotx.v1.FlightPhase\022\030\n\020uav_regi"
+    "stration\030\014 \001(\t\"s\n\rBuoyDetection\022/\n\010posit"
+    "ion\030\001 \001(\0132\035.robocommand.common.v1.LatLng"
+    "\0221\n\005state\030\002 \001(\0162\".robocommand.robotx.v1."
+    "BeaconState\"\265\001\n\021SafePassageReport\0225\n\016ent"
+    "ry_position\030\001 \001(\0132\035.robocommand.common.v"
+    "1.LatLng\0224\n\rexit_position\030\002 \001(\0132\035.roboco"
+    "mmand.common.v1.LatLng\0223\n\005buoys\030\003 \003(\0132$."
+    "robocommand.robotx.v1.BuoyDetection\"\223\001\n\024"
+    "PipelineSurveyReport\022;\n\024active_buoy_posi"
+    "tion\030\001 \001(\0132\035.robocommand.common.v1.LatLn"
+    "g\022>\n\010segments\030\002 \003(\0162,.robocommand.robotx"
+    ".v1.PipelineSegmentStatus\"\271\001\n\027ResourceDe"
+    "liveryRequest\022+\n\004task\030\001 \001(\0162\035.robocomman"
+    "d.robotx.v1.RxTask\0224\n\016resource_color\030\002 \001"
+    "(\0162\034.robocommand.robotx.v1.Color\022;\n\025deli"
+    "very_circle_color\030\003 \001(\0162\034.robocommand.ro"
+    "botx.v1.Color\"\037\n\rDockingReport\022\016\n\006bay_id"
+    "\030\001 \001(\r\"\'\n\022FirefightingReport\022\021\n\twindow_i"
+    "d\030\001 \001(\r\"\"\n\013IncidentAck\022\023\n\013command_seq\030\001 "
+    "\001(\r\"&\n\017ReadinessReport\022\023\n\013command_seq\030\001 "
+    "\001(\rb\010editionsp\351\007"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_robotx_2frx_5freports_2eproto_deps[3] = {
@@ -1928,7 +1942,7 @@ static ::absl::once_flag descriptor_table_robotx_2frx_5freports_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_robotx_2frx_5freports_2eproto = {
     false,
     false,
-    1950,
+    1976,
     descriptor_table_protodef_robotx_2frx_5freports_2eproto,
     "robotx/rx_reports.proto",
     &descriptor_table_robotx_2frx_5freports_2eproto_once,
@@ -2648,7 +2662,7 @@ void RxReport::InternalSwap(RxReport* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) 
 void Heartbeat::clear_position() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.position_ != nullptr) _impl_.position_->Clear();
-  ClearHasBit(_impl_._has_bits_[0], 0x00000001U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
 }
 Heartbeat::Heartbeat(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
@@ -2664,7 +2678,8 @@ PROTOBUF_NDEBUG_INLINE Heartbeat::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
     [[maybe_unused]] const ::robocommand::robotx::v1::Heartbeat& from_msg)
       : _has_bits_{from._has_bits_},
-        _cached_size_{0} {}
+        _cached_size_{0},
+        uav_registration_(arena, from.uav_registration_) {}
 
 Heartbeat::Heartbeat(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -2681,7 +2696,7 @@ Heartbeat::Heartbeat(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.position_ = (CheckHasBit(cached_has_bits, 0x00000001U))
+  _impl_.position_ = (CheckHasBit(cached_has_bits, 0x00000002U))
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.position_)
                 : nullptr;
   ::memcpy(reinterpret_cast<char*>(&_impl_) +
@@ -2697,7 +2712,8 @@ Heartbeat::Heartbeat(
 PROTOBUF_NDEBUG_INLINE Heartbeat::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-      : _cached_size_{0} {}
+      : _cached_size_{0},
+        uav_registration_(arena) {}
 
 inline void Heartbeat::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -2719,6 +2735,7 @@ inline void Heartbeat::SharedDtor(MessageLite& self) {
   }
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.uav_registration_.Destroy();
   delete this_._impl_.position_;
   this_._impl_.~Impl_();
 }
@@ -2757,19 +2774,24 @@ PROTOBUF_NOINLINE void Heartbeat::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
-    ABSL_DCHECK(_impl_.position_ != nullptr);
-    _impl_.position_->Clear();
+  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _impl_.uav_registration_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+      ABSL_DCHECK(_impl_.position_ != nullptr);
+      _impl_.position_->Clear();
+    }
   }
-  if (BatchCheckHasBit(cached_has_bits, 0x000000feU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x000000fcU)) {
     ::memset(&_impl_.state_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.depth_m_) -
-        reinterpret_cast<char*>(&_impl_.state_)) + sizeof(_impl_.depth_m_));
+        reinterpret_cast<char*>(&_impl_.altitude_hae_m_) -
+        reinterpret_cast<char*>(&_impl_.state_)) + sizeof(_impl_.altitude_hae_m_));
   }
-  if (BatchCheckHasBit(cached_has_bits, 0x00000700U)) {
-    ::memset(&_impl_.current_task_, 0, static_cast<::size_t>(
+  if (BatchCheckHasBit(cached_has_bits, 0x00000f00U)) {
+    ::memset(&_impl_.depth_m_, 0, static_cast<::size_t>(
         reinterpret_cast<char*>(&_impl_.flight_phase_) -
-        reinterpret_cast<char*>(&_impl_.current_task_)) + sizeof(_impl_.flight_phase_));
+        reinterpret_cast<char*>(&_impl_.depth_m_)) + sizeof(_impl_.flight_phase_));
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -2795,80 +2817,88 @@ PROTOBUF_NOINLINE void Heartbeat::Clear() {
 
   cached_has_bits = this_._impl_._has_bits_[0];
   // .robocommand.common.v1.RobotState state = 1;
-  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         1, this_._internal_state(), target);
   }
 
   // .robocommand.common.v1.LatLng position = 2;
-  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         2, *this_._impl_.position_, this_._impl_.position_->GetCachedSize(), target,
         stream);
   }
 
   // float spd_mps = 3;
-  if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         3, this_._internal_spd_mps(), target);
   }
 
   // float heading_deg = 4;
-  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         4, this_._internal_heading_deg(), target);
   }
 
   // float roll_deg = 5;
-  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000020U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         5, this_._internal_roll_deg(), target);
   }
 
   // float pitch_deg = 6;
-  if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000040U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         6, this_._internal_pitch_deg(), target);
   }
 
   // float altitude_hae_m = 7;
-  if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000080U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         7, this_._internal_altitude_hae_m(), target);
   }
 
   // float depth_m = 8;
-  if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000100U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(
         8, this_._internal_depth_m(), target);
   }
 
   // .robocommand.robotx.v1.RxTask current_task = 9;
-  if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000200U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         9, this_._internal_current_task(), target);
   }
 
   // .robocommand.robotx.v1.VehicleType vehicle_type = 10;
-  if (CheckHasBit(cached_has_bits, 0x00000200U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000400U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         10, this_._internal_vehicle_type(), target);
   }
 
   // .robocommand.robotx.v1.FlightPhase flight_phase = 11;
-  if (CheckHasBit(cached_has_bits, 0x00000400U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000800U)) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteEnumToArray(
         11, this_._internal_flight_phase(), target);
+  }
+
+  // string uav_registration = 12;
+  if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+    const ::absl::string_view _s = this_._internal_uav_registration();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "robocommand.robotx.v1.Heartbeat.uav_registration");
+    target = stream->WriteStringMaybeAliased(12, _s, target);
   }
 
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -2896,32 +2926,37 @@ PROTOBUF_NOINLINE void Heartbeat::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  total_size += ::absl::popcount(0x000000fcU & cached_has_bits) * 5;
-  if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
-    // .robocommand.common.v1.LatLng position = 2;
+  total_size += ::absl::popcount(0x000001f8U & cached_has_bits) * 5;
+  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+    // string uav_registration = 12;
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this_._internal_uav_registration());
+    }
+    // .robocommand.common.v1.LatLng position = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.position_);
     }
     // .robocommand.common.v1.RobotState state = 1;
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       total_size += 1 +
                     ::_pbi::WireFormatLite::EnumSize(this_._internal_state());
     }
   }
-  if (BatchCheckHasBit(cached_has_bits, 0x00000700U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x00000e00U)) {
     // .robocommand.robotx.v1.RxTask current_task = 9;
-    if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
       total_size += 1 +
                     ::_pbi::WireFormatLite::EnumSize(this_._internal_current_task());
     }
     // .robocommand.robotx.v1.VehicleType vehicle_type = 10;
-    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000400U)) {
       total_size += 1 +
                     ::_pbi::WireFormatLite::EnumSize(this_._internal_vehicle_type());
     }
     // .robocommand.robotx.v1.FlightPhase flight_phase = 11;
-    if (CheckHasBit(cached_has_bits, 0x00000400U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000800U)) {
       total_size += 1 +
                     ::_pbi::WireFormatLite::EnumSize(this_._internal_flight_phase());
     }
@@ -2946,6 +2981,9 @@ void Heartbeat::MergeImpl(::google::protobuf::MessageLite& to_msg,
   cached_has_bits = from._impl_._has_bits_[0];
   if (BatchCheckHasBit(cached_has_bits, 0x000000ffU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
+      _this->_internal_set_uav_registration(from._internal_uav_registration());
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
       ABSL_DCHECK(from._impl_.position_ != nullptr);
       if (_this->_impl_.position_ == nullptr) {
         _this->_impl_.position_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.position_);
@@ -2953,36 +2991,36 @@ void Heartbeat::MergeImpl(::google::protobuf::MessageLite& to_msg,
         _this->_impl_.position_->MergeFrom(*from._impl_.position_);
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00000002U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       _this->_impl_.state_ = from._impl_.state_;
     }
-    if (CheckHasBit(cached_has_bits, 0x00000004U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       _this->_impl_.spd_mps_ = from._impl_.spd_mps_;
     }
-    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
       _this->_impl_.heading_deg_ = from._impl_.heading_deg_;
     }
-    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       _this->_impl_.roll_deg_ = from._impl_.roll_deg_;
     }
-    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
       _this->_impl_.pitch_deg_ = from._impl_.pitch_deg_;
     }
-    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
       _this->_impl_.altitude_hae_m_ = from._impl_.altitude_hae_m_;
     }
-    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+  }
+  if (BatchCheckHasBit(cached_has_bits, 0x00000f00U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000100U)) {
       _this->_impl_.depth_m_ = from._impl_.depth_m_;
     }
-  }
-  if (BatchCheckHasBit(cached_has_bits, 0x00000700U)) {
-    if (CheckHasBit(cached_has_bits, 0x00000100U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
       _this->_impl_.current_task_ = from._impl_.current_task_;
     }
-    if (CheckHasBit(cached_has_bits, 0x00000200U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000400U)) {
       _this->_impl_.vehicle_type_ = from._impl_.vehicle_type_;
     }
-    if (CheckHasBit(cached_has_bits, 0x00000400U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000800U)) {
       _this->_impl_.flight_phase_ = from._impl_.flight_phase_;
     }
   }
@@ -3001,8 +3039,11 @@ void Heartbeat::CopyFrom(const Heartbeat& from) {
 
 void Heartbeat::InternalSwap(Heartbeat* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  _impl_.uav_registration_.InternalSwap(&_impl_.uav_registration_, &other->_impl_.uav_registration_, arena);
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Heartbeat, _impl_.flight_phase_)
       + sizeof(Heartbeat::_impl_.flight_phase_)

@@ -6,6 +6,7 @@ LOG_DIR (default /app/logs, mounted to ./logs on the host)
 """
 
 import logging
+import math
 import os
 import time
 import paho.mqtt.client as mqtt
@@ -24,6 +25,32 @@ BROKER_HOST = os.environ.get("BROKER_HOST", "localhost")
 BROKER_PORT = int(os.environ.get("BROKER_PORT", "1883"))
 TOPIC_ROOT = "robocommand/robotx"
 LOG_DIR = os.environ.get("LOG_DIR", "/app/logs")
+
+# The course RxCourse publishes: Course Alpha's boundary and Garuda's
+# Transit A beside it (MyDroneFleets, 2026-10-22), each a closed ring of
+# (lat, lng). The competition's own may differ: read them from RxCourse
+# rather than copying these.
+COURSE_ALPHA = [
+    (1.2809652, 103.8548424),
+    (1.2808457, 103.8550331),
+    (1.2810752, 103.8551770),
+    (1.2811947, 103.8549863),
+    (1.2809652, 103.8548424),
+]
+TRANSIT_A = [
+    (1.281294119, 103.855048646),
+    (1.281174598, 103.855239379),
+    (1.2810752, 103.8551770),
+    (1.2811947, 103.8549863),
+    (1.281294119, 103.855048646),
+]
+# A declared UAV geofence's ceiling must be above 0 and at most this
+# (meters above the WGS84 ellipsoid).
+MAX_UAV_ALTITUDE_HAE_M = float(os.environ.get("MAX_UAV_ALTITUDE_HAE_M", "50"))
+# How far outside the course and transit area a geofence point may lie
+# (rounding between surveys), and how finely its edges are checked.
+GEOFENCE_TOLERANCE_M = 1.0
+EDGE_STEP_M = 0.5
 
 
 def setup_logger() -> logging.Logger:
@@ -99,13 +126,83 @@ def on_connect(client, userdata, flags, reason_code, properties):
     client.subscribe(f"{TOPIC_ROOT}/#")
 
 
+# ── UAV geofence check (as RoboCommand does it) ──────────────────────────
+
+
+def _xy(p, origin):
+    """(lat, lng) as local east/north meters around origin."""
+    r = 6371000.0
+    return (
+        math.radians(p[1] - origin[1]) * r * math.cos(math.radians(origin[0])),
+        math.radians(p[0] - origin[0]) * r,
+    )
+
+
+def _inside(p, ring) -> bool:
+    x, y = p
+    inside = False
+    for (x1, y1), (x2, y2) in zip(ring, ring[1:]):
+        if (y1 > y) != (y2 > y) and x < x1 + (y - y1) * (x2 - x1) / (y2 - y1):
+            inside = not inside
+    return inside
+
+
+def _outside_by(p, ring) -> float:
+    """0 inside the ring, else meters to its nearest edge."""
+    if _inside(p, ring):
+        return 0.0
+    best = math.inf
+    for (ax, ay), (bx, by) in zip(ring, ring[1:]):
+        dx, dy = bx - ax, by - ay
+        t = 0.0 if dx == dy == 0 else max(0.0, min(1.0, ((p[0] - ax) * dx + (p[1] - ay) * dy) / (dx * dx + dy * dy)))
+        best = min(best, math.hypot(p[0] - (ax + t * dx), p[1] - (ay + t * dy)))
+    return best
+
+
+def geofence_problems(decl: rx_requests_pb2.RunDeclaration) -> list:
+    """Why RoboCommand would refuse this UAV geofence (empty: it's fine).
+    Every point along its edges must lie within the course or the transit
+    area (to within GEOFENCE_TOLERANCE_M), and its ceiling must be above 0
+    and at most MAX_UAV_ALTITUDE_HAE_M."""
+    fence = [(p.latitude, p.longitude) for p in decl.uav_geofence]
+    problems = []
+    if len(fence) < 4:
+        problems.append(f"uav_geofence has {len(fence)} point(s), needs at least 4")
+    elif fence[0] != fence[-1]:
+        problems.append("uav_geofence isn't closed: its first and last points must be the same")
+    else:
+        origin = COURSE_ALPHA[0]
+        areas = [[_xy(p, origin) for p in ring] for ring in (COURSE_ALPHA, TRANSIT_A)]
+        pts = [_xy(p, origin) for p in fence]
+        worst, where = 0.0, None
+        for i, (a, b) in enumerate(zip(pts, pts[1:])):
+            steps = max(1, math.ceil(math.dist(a, b) / EDGE_STEP_M))
+            for k in range(steps + 1):
+                q = (a[0] + (b[0] - a[0]) * k / steps, a[1] + (b[1] - a[1]) * k / steps)
+                out = min(_outside_by(q, area) for area in areas)
+                if out > worst:
+                    worst = out
+                    where = f"point {i + 1}" if k == 0 else f"point {i + 2}" if k == steps else f"edge {i + 1}-{i + 2}"
+        if worst > GEOFENCE_TOLERANCE_M:
+            problems.append(f"uav_geofence leaves the course and transit area by {worst:.1f} m at {where}")
+    ceiling = decl.uav_geofence_max_altitude_hae_m
+    if not 0 < ceiling <= MAX_UAV_ALTITUDE_HAE_M:
+        problems.append(
+            f"uav_geofence_max_altitude_hae_m is {ceiling:g}: it must be above 0 and at most {MAX_UAV_ALTITUDE_HAE_M:g}"
+        )
+    return problems
+
+
 def handle_run_declaration(msg: rx_requests_pb2.RxRequest) -> None:
     decl = msg.run_declaration
-    if any(vid.startswith("UAV") for vid in decl.vehicle_ids) and len(decl.uav_geofence) < 4:
-        raise ValueError(
-            f"RunDeclaration for {msg.team_id} lists a UAV vehicle but uav_geofence "
-            f"has only {len(decl.uav_geofence)} point(s) (min 4)"
-        )
+    # As RoboCommand: only a declaration with a UAV is checked.
+    if any(vid.startswith("UAV") for vid in decl.vehicle_ids):
+        problems = geofence_problems(decl)
+        if problems:
+            # RoboCommand sends nothing back for a refused declaration: the
+            # run just never starts. Fix it and send a new RunDeclaration.
+            raise ValueError(f"RunDeclaration for {msg.team_id} refused: " + "; ".join(problems))
+        log.info(f"[geofence] {msg.team_id}: UAV geofence and ceiling OK")
     run_declarations[msg.team_id] = {
         "seq": msg.seq,
         "vehicle_ids": set(decl.vehicle_ids),
@@ -182,14 +279,9 @@ def main():
     course = rx_course_pb2.RxCourse(
         course_id=os.environ.get("COURSE_ID", "ALPHA"),
         pinger_freq_hz=int(os.environ.get("PINGER_FREQ_HZ", "25000")),
-        corners=[
-            common_pb2.LatLng(latitude=1.280329,  longitude=103.8556869),
-            common_pb2.LatLng(latitude=1.2804716, longitude=103.8554529),
-            common_pb2.LatLng(latitude=1.2808993, longitude=103.8557337),
-            common_pb2.LatLng(latitude=1.2807567, longitude=103.8559743),
-            common_pb2.LatLng(latitude=1.280329,  longitude=103.8556869),
-        ],
+        corners=[common_pb2.LatLng(latitude=lat, longitude=lng) for lat, lng in COURSE_ALPHA],
         sent_at=_now_ts(),
+        uav_transit_area=[common_pb2.LatLng(latitude=lat, longitude=lng) for lat, lng in TRANSIT_A],
     )
     client.publish(f"{TOPIC_ROOT}/course", course.SerializeToString(), retain=True)
     log.info(f"Published RxCourse (retained) → {TOPIC_ROOT}/course")

@@ -23,17 +23,21 @@ class RxRequest(_message.Message):
     def __init__(self, team_id: _Optional[str] = ..., seq: _Optional[int] = ..., sent_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., run_declaration: _Optional[_Union[RunDeclaration, _Mapping]] = ...) -> None: ...
 
 class RunDeclaration(_message.Message):
-    __slots__ = ("vehicle_ids", "task1_tier", "task2_tier", "task3_tier", "task4_tier", "uav_geofence")
+    __slots__ = ("vehicle_ids", "task1_tier", "task2_tier", "task3_tier", "task4_tier", "uav_geofence", "uav_geofence_max_altitude_hae_m", "uav_pilot_callsign")
     VEHICLE_IDS_FIELD_NUMBER: _ClassVar[int]
     TASK1_TIER_FIELD_NUMBER: _ClassVar[int]
     TASK2_TIER_FIELD_NUMBER: _ClassVar[int]
     TASK3_TIER_FIELD_NUMBER: _ClassVar[int]
     TASK4_TIER_FIELD_NUMBER: _ClassVar[int]
     UAV_GEOFENCE_FIELD_NUMBER: _ClassVar[int]
+    UAV_GEOFENCE_MAX_ALTITUDE_HAE_M_FIELD_NUMBER: _ClassVar[int]
+    UAV_PILOT_CALLSIGN_FIELD_NUMBER: _ClassVar[int]
     vehicle_ids: _containers.RepeatedScalarFieldContainer[str]
     task1_tier: _common_pb2.TaskTier
     task2_tier: _common_pb2.TaskTier
     task3_tier: _common_pb2.TaskTier
     task4_tier: _common_pb2.TaskTier
     uav_geofence: _containers.RepeatedCompositeFieldContainer[_common_pb2.LatLng]
-    def __init__(self, vehicle_ids: _Optional[_Iterable[str]] = ..., task1_tier: _Optional[_Union[_common_pb2.TaskTier, str]] = ..., task2_tier: _Optional[_Union[_common_pb2.TaskTier, str]] = ..., task3_tier: _Optional[_Union[_common_pb2.TaskTier, str]] = ..., task4_tier: _Optional[_Union[_common_pb2.TaskTier, str]] = ..., uav_geofence: _Optional[_Iterable[_Union[_common_pb2.LatLng, _Mapping]]] = ...) -> None: ...
+    uav_geofence_max_altitude_hae_m: float
+    uav_pilot_callsign: str
+    def __init__(self, vehicle_ids: _Optional[_Iterable[str]] = ..., task1_tier: _Optional[_Union[_common_pb2.TaskTier, str]] = ..., task2_tier: _Optional[_Union[_common_pb2.TaskTier, str]] = ..., task3_tier: _Optional[_Union[_common_pb2.TaskTier, str]] = ..., task4_tier: _Optional[_Union[_common_pb2.TaskTier, str]] = ..., uav_geofence: _Optional[_Iterable[_Union[_common_pb2.LatLng, _Mapping]]] = ..., uav_geofence_max_altitude_hae_m: _Optional[float] = ..., uav_pilot_callsign: _Optional[str] = ...) -> None: ...

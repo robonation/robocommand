@@ -503,11 +503,11 @@ constexpr MovingObjectAlert::ParseTableT_ MovingObjectAlert::InternalGeneratePar
     {
       PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_._has_bits_),
       0, // no _extensions_
-      4, 24,  // max_field_number, fast_idx_mask
+      5, 56,  // max_field_number, fast_idx_mask
       offsetof(ParseTableT_, field_lookup_table),
-      4294967280,  // skipmap
+      4294967264,  // skipmap
       offsetof(ParseTableT_, field_entries),
-      4,  // num_field_entries
+      5,  // num_field_entries
       1,  // num_aux_entries
       offsetof(ParseTableT_, aux_entries),
       class_data,
@@ -517,10 +517,7 @@ constexpr MovingObjectAlert::ParseTableT_ MovingObjectAlert::InternalGeneratePar
       ::_pbi::TcParser::GetTable<::robocommand::robotx::v1::MovingObjectAlert>(),  // to_prefetch
       #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
     }, {{
-      // repeated .robocommand.robotx.v1.VehicleType affected_vehicle_types = 4;
-      {::_pbi::TcParser::FastV32P1,
-       {34, 0, 0,
-        PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.affected_vehicle_types_)}},
+      {::_pbi::TcParser::MiniParse, {}},
       // .robocommand.common.v1.LatLng position = 1;
       {::_pbi::TcParser::FastMtS1,
        {10, 1, 0,
@@ -533,6 +530,16 @@ constexpr MovingObjectAlert::ParseTableT_ MovingObjectAlert::InternalGeneratePar
       {::_pbi::TcParser::FastF32S1,
        {29, 3, 0,
         PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.speed_mps_)}},
+      // repeated .robocommand.robotx.v1.VehicleType affected_vehicle_types = 4;
+      {::_pbi::TcParser::FastV32P1,
+       {34, 0, 0,
+        PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.affected_vehicle_types_)}},
+      // float keep_out_radius_m = 5;
+      {::_pbi::TcParser::FastF32S1,
+       {45, 4, 0,
+        PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.keep_out_radius_m_)}},
+      {::_pbi::TcParser::MiniParse, {}},
+      {::_pbi::TcParser::MiniParse, {}},
     }}, {{
       65535, 65535
     }}, {{
@@ -544,6 +551,8 @@ constexpr MovingObjectAlert::ParseTableT_ MovingObjectAlert::InternalGeneratePar
       {PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.speed_mps_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
       // repeated .robocommand.robotx.v1.VehicleType affected_vehicle_types = 4;
       {PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.affected_vehicle_types_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kPackedOpenEnum)},
+      // float keep_out_radius_m = 5;
+      {PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.keep_out_radius_m_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kFloat)},
     }},
     {{
         #ifndef PROTOBUF_MESSAGE_GLOBALS
@@ -570,7 +579,8 @@ inline constexpr MovingObjectAlert::Impl_::Impl_(
         _affected_vehicle_types_cached_byte_size_{0},
         position_{nullptr},
         heading_deg_{0},
-        speed_mps_{0} {}
+        speed_mps_{0},
+        keep_out_radius_m_{0} {}
 
 template <typename>
 constexpr MovingObjectAlert::MovingObjectAlert(::_pbi::ConstantInitialized,
@@ -1274,15 +1284,17 @@ const ::uint32_t
         0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::MovingObjectAlert, _impl_._has_bits_),
-        7, // hasbit index offset
+        8, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::MovingObjectAlert, _impl_.position_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::MovingObjectAlert, _impl_.heading_deg_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::MovingObjectAlert, _impl_.speed_mps_),
         PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::MovingObjectAlert, _impl_.affected_vehicle_types_),
+        PROTOBUF_FIELD_OFFSET(::robocommand::robotx::v1::MovingObjectAlert, _impl_.keep_out_radius_m_),
         1,
         2,
         3,
         0,
+        4,
 };
 
 static const ::_pbi::MigrationSchema
@@ -1333,12 +1345,13 @@ const char descriptor_table_protodef_robotx_2frx_5fcommands_2eproto[] ABSL_ATTRI
     "atLng\022\020\n\010radius_m\030\002 \001(\002\0228\n\014vehicle_type\030"
     "\003 \001(\0162\".robocommand.robotx.v1.VehicleTyp"
     "e\"D\n\010AllClear\0228\n\014vehicle_type\030\001 \001(\0162\".ro"
-    "bocommand.robotx.v1.VehicleType\"\260\001\n\021Movi"
+    "bocommand.robotx.v1.VehicleType\"\313\001\n\021Movi"
     "ngObjectAlert\022/\n\010position\030\001 \001(\0132\035.roboco"
     "mmand.common.v1.LatLng\022\023\n\013heading_deg\030\002 "
     "\001(\002\022\021\n\tspeed_mps\030\003 \001(\002\022B\n\026affected_vehic"
     "le_types\030\004 \003(\0162\".robocommand.robotx.v1.V"
-    "ehicleTypeb\010editionsp\351\007"
+    "ehicleType\022\031\n\021keep_out_radius_m\030\005 \001(\002b\010e"
+    "ditionsp\351\007"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_robotx_2frx_5fcommands_2eproto_deps[3] = {
@@ -1350,7 +1363,7 @@ static ::absl::once_flag descriptor_table_robotx_2frx_5fcommands_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_robotx_2frx_5fcommands_2eproto = {
     false,
     false,
-    1263,
+    1290,
     descriptor_table_protodef_robotx_2frx_5fcommands_2eproto,
     "robotx/rx_commands.proto",
     &descriptor_table_robotx_2frx_5fcommands_2eproto_once,
@@ -3168,9 +3181,9 @@ MovingObjectAlert::MovingObjectAlert(
                offsetof(Impl_, heading_deg_),
            reinterpret_cast<const char*>(&from._impl_) +
                offsetof(Impl_, heading_deg_),
-           offsetof(Impl_, speed_mps_) -
+           offsetof(Impl_, keep_out_radius_m_) -
                offsetof(Impl_, heading_deg_) +
-               sizeof(Impl_::speed_mps_));
+               sizeof(Impl_::keep_out_radius_m_));
 
   // @@protoc_insertion_point(copy_constructor:robocommand.robotx.v1.MovingObjectAlert)
 }
@@ -3190,9 +3203,9 @@ inline void MovingObjectAlert::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena)
   ::memset(reinterpret_cast<char*>(&_impl_) +
                offsetof(Impl_, position_),
            0,
-           offsetof(Impl_, speed_mps_) -
+           offsetof(Impl_, keep_out_radius_m_) -
                offsetof(Impl_, position_) +
-               sizeof(Impl_::speed_mps_));
+               sizeof(Impl_::keep_out_radius_m_));
 }
 MovingObjectAlert::~MovingObjectAlert() {
   // @@protoc_insertion_point(destructor:robocommand.robotx.v1.MovingObjectAlert)
@@ -3252,10 +3265,10 @@ PROTOBUF_NOINLINE void MovingObjectAlert::Clear() {
       _impl_.position_->Clear();
     }
   }
-  if (BatchCheckHasBit(cached_has_bits, 0x0000000cU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001cU)) {
     ::memset(&_impl_.heading_deg_, 0, static_cast<::size_t>(
-        reinterpret_cast<char*>(&_impl_.speed_mps_) -
-        reinterpret_cast<char*>(&_impl_.heading_deg_)) + sizeof(_impl_.speed_mps_));
+        reinterpret_cast<char*>(&_impl_.keep_out_radius_m_) -
+        reinterpret_cast<char*>(&_impl_.heading_deg_)) + sizeof(_impl_.keep_out_radius_m_));
   }
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
@@ -3312,6 +3325,13 @@ PROTOBUF_NOINLINE void MovingObjectAlert::Clear() {
     }
   }
 
+  // float keep_out_radius_m = 5;
+  if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(
+        5, this_._internal_keep_out_radius_m(), target);
+  }
+
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -3337,7 +3357,7 @@ PROTOBUF_NOINLINE void MovingObjectAlert::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  total_size += ::absl::popcount(0x0000000cU & cached_has_bits) * 5;
+  total_size += ::absl::popcount(0x0000001cU & cached_has_bits) * 5;
   if (BatchCheckHasBit(cached_has_bits, 0x00000003U)) {
     // repeated .robocommand.robotx.v1.VehicleType affected_vehicle_types = 4;
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
@@ -3368,7 +3388,7 @@ void MovingObjectAlert::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000001fU)) {
     if (CheckHasBit(cached_has_bits, 0x00000001U)) {
       _this->_internal_mutable_affected_vehicle_types()->MergeFrom(from._internal_affected_vehicle_types());
     }
@@ -3385,6 +3405,9 @@ void MovingObjectAlert::MergeImpl(::google::protobuf::MessageLite& to_msg,
     }
     if (CheckHasBit(cached_has_bits, 0x00000008U)) {
       _this->_impl_.speed_mps_ = from._impl_.speed_mps_;
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000010U)) {
+      _this->_impl_.keep_out_radius_m_ = from._impl_.keep_out_radius_m_;
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -3406,8 +3429,8 @@ void MovingObjectAlert::InternalSwap(MovingObjectAlert* PROTOBUF_RESTRICT PROTOB
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.affected_vehicle_types_.InternalSwap(&other->_impl_.affected_vehicle_types_);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.speed_mps_)
-      + sizeof(MovingObjectAlert::_impl_.speed_mps_)
+      PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.keep_out_radius_m_)
+      + sizeof(MovingObjectAlert::_impl_.keep_out_radius_m_)
       - PROTOBUF_FIELD_OFFSET(MovingObjectAlert, _impl_.position_)>(
           reinterpret_cast<char*>(&_impl_.position_),
           reinterpret_cast<char*>(&other->_impl_.position_));

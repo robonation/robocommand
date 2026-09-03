@@ -11,7 +11,7 @@ Protobuf message schemas and test tooling for RobotX 2026 MQTT communication bet
 | `robotx/rx_reports.proto` | `robocommand.robotx.v1` | `RxReport` — OCS → RoboCommand, attributed to a vehicle (heartbeat, task reports) |
 | `robotx/rx_requests.proto` | `robocommand.robotx.v1` | `RxRequest` — OCS → RoboCommand (pre-run `RunDeclaration`) |
 | `robotx/rx_commands.proto` | `robocommand.robotx.v1` | `RxCommand` — RoboCommand → OCS, targeted to a vehicle type (`RunStart`, Task 4 commands) |
-| `robotx/rx_course.proto` | `robocommand.robotx.v1` | `RxCourse` — retained course config published by RC on server start |
+| `robotx/rx_course.proto` | `robocommand.robotx.v1` | `RxCourse` — retained course config published by RC: the course boundary and the UAV transit area; republished whenever it changes |
 
 ### MQTT topics
 
@@ -34,7 +34,11 @@ The broker runs **Eclipse Mosquitto 2.x** (`eclipse-mosquitto:2` in `docker-comp
 
 ## Test environment
 
-Runs a Mosquitto broker and a server that subscribes to all topics and logs decoded messages.
+Runs a Mosquitto broker and a test server that stands in for RoboCommand:
+- publishes `RxCourse` (retained): Course Alpha's boundary and its UAV transit area (Garuda's Transit A). The competition's own may differ, so read them from `RxCourse` rather than copying them;
+- checks each `RunDeclaration` that includes a UAV as RoboCommand does: `uav_geofence` closed with at least 4 points, every point along its edges within the course or the transit area, and `uav_geofence_max_altitude_hae_m` above 0 and at most 50 (meters HAE). A refused declaration is only logged, with the reason; as with RoboCommand, nothing is sent back and the run doesn't start;
+- sends `RunStart` once every declared vehicle reports `STATE_AUTO`;
+- logs every decoded message.
 
 **Start:**
 ```bash
@@ -71,11 +75,10 @@ docker compose run --rm rc-test python test_client.py run-start \
 
 # Task 4 assistance request (RC → OCS, targeted to a vehicle type)
 docker compose run --rm rc-test python test_client.py assistance-request \
-  --vehicle-type uuv --lat 21.31 --lng -157.89
+  --vehicle-type uuv --lat 1.2810 --lng 103.8550
 
-# Course config — retained, survives broker restart (simulates RC server start)
-docker compose run --rm rc-test python test_client.py course \
-  --course-id RX2026-A --pinger-freq-hz 27000
+# Read the retained course config (boundary and UAV transit area) the server published
+docker compose run --rm rc-test python test_client.py receive-course
 ```
 
 All subcommands accept `--broker` and `--port` to target a different broker. Use `--help` on any subcommand for the full option list.

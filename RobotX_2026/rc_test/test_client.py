@@ -28,7 +28,6 @@ Commands:
   all-clear           Send an RxCommand/AllClear (Task 4 Advanced)
   moving-object-alert Send an RxCommand/MovingObjectAlert (Task 4 Disruptive)
   readiness-confirm   Send an RxCommand/ReadinessConfirm (Task 4)
-  course              Publish RxCourse (retained)
   receive-course      Receive and decode the retained RxCourse from the broker
 """
 
@@ -139,6 +138,7 @@ def cmd_heartbeat(args, client):
             spd_mps=args.speed,
             heading_deg=args.heading,
             vehicle_type=TYPE_MAP.get(args.vehicle_type, rx_common_pb2.TYPE_UNKNOWN),
+            uav_registration=args.registration,
         ),
     )
     topic = f"{TOPIC_ROOT}/{args.team}/{args.vehicle}/report"
@@ -146,6 +146,9 @@ def cmd_heartbeat(args, client):
 
 
 def cmd_run_declaration(args, client):
+    if len(args.geofence_lats) != len(args.geofence_lngs):
+        raise ValueError(f"--geofence-lats has {len(args.geofence_lats)} values and --geofence-lngs "
+                         f"{len(args.geofence_lngs)}: give one longitude per latitude")
     geofence = [
         common_pb2.LatLng(latitude=lat, longitude=lng)
         for lat, lng in zip(args.geofence_lats, args.geofence_lngs)
@@ -161,6 +164,8 @@ def cmd_run_declaration(args, client):
             task3_tier=parse_tier(args.task3),
             task4_tier=parse_tier(args.task4),
             uav_geofence=geofence,
+            uav_geofence_max_altitude_hae_m=args.geofence_max_altitude_hae,
+            uav_pilot_callsign=args.uav_pilot_callsign,
         ),
     )
     topic = f"{TOPIC_ROOT}/{args.team}/request"
@@ -312,6 +317,7 @@ def cmd_moving_object_alert(args, client):
             heading_deg=args.heading,
             speed_mps=args.speed,
             affected_vehicle_types=[TYPE_MAP.get(t, rx_common_pb2.TYPE_UNKNOWN) for t in args.affected_vehicle_types],
+            keep_out_radius_m=args.keep_out_radius,
         ),
     )
     topic = f"{TOPIC_ROOT}/{args.team}/command"
@@ -330,21 +336,6 @@ def cmd_readiness_confirm(args, client):
     )
     topic = f"{TOPIC_ROOT}/{args.team}/command"
     publish(client, topic, command)
-
-
-def cmd_course(args, client):
-    corners = [
-        common_pb2.LatLng(latitude=lat, longitude=lng)
-        for lat, lng in zip(args.corner_lats, args.corner_lngs)
-    ]
-    msg = rx_course_pb2.RxCourse(
-        course_id=args.course_id,
-        pinger_freq_hz=args.pinger_freq_hz,
-        corners=corners,
-        sent_at=now_ts(),
-    )
-    topic = f"{TOPIC_ROOT}/course"
-    publish(client, topic, msg, retain=True)
 
 
 def cmd_receive_course(args, client):
@@ -379,10 +370,11 @@ def add_commands(sub) -> None:
     p.add_argument("--vehicle", default="USV1")
     p.add_argument("--state", default="auto", choices=STATE_MAP)
     p.add_argument("--vehicle-type", default="usv", choices=TYPE_MAP)
-    p.add_argument("--lat", type=float, default=1.2806142)
-    p.add_argument("--lng", type=float, default=103.8557120)
+    p.add_argument("--lat", type=float, default=1.2810202)
+    p.add_argument("--lng", type=float, default=103.8550097)
     p.add_argument("--speed", type=float, default=0.0)
     p.add_argument("--heading", type=float, default=0.0)
+    p.add_argument("--registration", default="", help="UAV: its CAAS registration number, e.g. 53551")
     p.set_defaults(func=cmd_heartbeat)
 
     # run-declaration
@@ -394,13 +386,16 @@ def add_commands(sub) -> None:
     p.add_argument("--task3", default="unknown", metavar="TIER", help="Coordinated Logistics")
     p.add_argument("--task4", default="unknown", metavar="TIER", help="Dynamic Incident Response")
     p.add_argument("--geofence-lats", nargs="+", type=float,
-                   default=[1.280329, 1.2804716, 1.2808993, 1.2807567, 1.280329],
+                   default=[1.2809652, 1.2808457, 1.2810752, 1.281174598, 1.281294119, 1.2811947, 1.2809652],
                    metavar="LAT", help="UAV geofence corner latitudes, closed ring "
                    "(first/last must match; same count as --geofence-lngs)")
     p.add_argument("--geofence-lngs", nargs="+", type=float,
-                   default=[103.8556869, 103.8554529, 103.8557337, 103.8559743, 103.8556869],
+                   default=[103.8548424, 103.8550331, 103.8551770, 103.855239379, 103.855048646, 103.8549863, 103.8548424],
                    metavar="LNG", help="UAV geofence corner longitudes, closed ring "
                    "(first/last must match; same count as --geofence-lats)")
+    p.add_argument("--geofence-max-altitude-hae", type=float, default=40.0,
+                   metavar="METERS", help="Max altitude of the UAV geofence, in meters HAE (at most 50)")
+    p.add_argument("--uav-pilot-callsign", default="", help="UAV pilot's MyDroneFleets call sign for this run: first name + UAPL number")
     p.set_defaults(func=cmd_run_declaration)
 
     # run-start
@@ -413,8 +408,8 @@ def add_commands(sub) -> None:
     # assistance-request
     p = sub.add_parser("assistance-request", help="RxCommand/AssistanceRequest (simulates RC Task 4)")
     p.add_argument("--team", default="RNRX")
-    p.add_argument("--lat", type=float, default=1.2806142)
-    p.add_argument("--lng", type=float, default=103.8557120)
+    p.add_argument("--lat", type=float, default=1.2810202)
+    p.add_argument("--lng", type=float, default=103.8550097)
     p.add_argument("--vehicle-type", default="usv", choices=["usv", "uuv", "uav"])
     p.set_defaults(func=cmd_assistance_request)
 
@@ -422,8 +417,8 @@ def add_commands(sub) -> None:
     p = sub.add_parser("pipeline-survey", help="RxReport/PipelineSurveyReport (Task 2)")
     p.add_argument("--team", default="RNRX")
     p.add_argument("--vehicle", default="UUV1")
-    p.add_argument("--lat", type=float, default=1.2806142)
-    p.add_argument("--lng", type=float, default=103.8557120)
+    p.add_argument("--lat", type=float, default=1.2810202)
+    p.add_argument("--lng", type=float, default=103.8550097)
     p.add_argument("--segments", nargs="+", default=["intact", "damaged", "intact"], choices=SEGMENT_MAP,
                    metavar="STATUS", help="Segment statuses, ordered from the active buoy end")
     p.set_defaults(func=cmd_pipeline_survey)
@@ -468,8 +463,8 @@ def add_commands(sub) -> None:
     # keep-out-zone
     p = sub.add_parser("keep-out-zone", help="RxCommand/KeepOutZone (Task 4 Advanced)")
     p.add_argument("--team", default="RNRX")
-    p.add_argument("--lat", type=float, default=1.2806142)
-    p.add_argument("--lng", type=float, default=103.8557120)
+    p.add_argument("--lat", type=float, default=1.2810202)
+    p.add_argument("--lng", type=float, default=103.8550097)
     p.add_argument("--radius-m", type=float, default=15.0)
     p.add_argument("--vehicle-type", default="usv", choices=TYPE_MAP)
     p.set_defaults(func=cmd_keep_out_zone)
@@ -483,11 +478,12 @@ def add_commands(sub) -> None:
     # moving-object-alert
     p = sub.add_parser("moving-object-alert", help="RxCommand/MovingObjectAlert (Task 4 Disruptive)")
     p.add_argument("--team", default="RNRX")
-    p.add_argument("--lat", type=float, default=1.2806142)
-    p.add_argument("--lng", type=float, default=103.8557120)
+    p.add_argument("--lat", type=float, default=1.2810202)
+    p.add_argument("--lng", type=float, default=103.8550097)
     p.add_argument("--heading", type=float, default=0.0)
     p.add_argument("--speed", type=float, default=0.0)
     p.add_argument("--affected-vehicle-types", nargs="+", default=["usv"], choices=TYPE_MAP, metavar="TYPE")
+    p.add_argument("--keep-out-radius", type=float, default=5.0, help="Keep-out radius around the object, in meters")
     p.set_defaults(func=cmd_moving_object_alert)
 
     # readiness-confirm
@@ -496,16 +492,6 @@ def add_commands(sub) -> None:
     p.add_argument("--report-seq", type=int, default=1)
     p.add_argument("--vehicle-id", default="USV1", help="Vehicle whose ReadinessReport is being confirmed")
     p.set_defaults(func=cmd_readiness_confirm)
-
-    # course (retained, published on server start)
-    p = sub.add_parser("course", help="RxCourse — retained course config published on server start")
-    p.add_argument("--course-id", default="RX2026-A")
-    p.add_argument("--pinger-freq-hz", type=int, default=27000)
-    p.add_argument("--corner-lats", nargs="+", type=float, default=[21.310, 21.310, 21.305, 21.305],
-                   metavar="LAT", help="Corner latitudes (same count as --corner-lngs)")
-    p.add_argument("--corner-lngs", nargs="+", type=float, default=[-157.890, -157.884, -157.884, -157.890],
-                   metavar="LNG", help="Corner longitudes (same count as --corner-lats)")
-    p.set_defaults(func=cmd_course)
 
     # receive-course
     p = sub.add_parser("receive-course", help="Receive and decode the retained RxCourse from the broker")
@@ -581,9 +567,14 @@ def main():
     client.loop_start()
 
     if args.command:
-        args.func(args, client)
-        client.loop_stop()
-        client.disconnect()
+        try:
+            args.func(args, client)
+        except Exception as e:  # as in the REPL: the reason, not a traceback
+            print(f"Error: {e}", file=sys.stderr)
+            sys.exit(1)
+        finally:
+            client.loop_stop()
+            client.disconnect()
         return
 
     run_repl(client)
